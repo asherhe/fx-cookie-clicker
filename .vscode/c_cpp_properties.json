@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "fx-9860",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "~/.local/share/fxsdk/sysroot/sh3eb-elf/include/c++/14.1.0",
+                "~/.local/share/fxsdk/sysroot/sh3eb-elf/include/c++/14.1.0/sh3eb-elf",
+                "~/.local/share/fxsdk/sysroot/sh3eb-elf/include/c++/14.1.0/backward",
+                "~/.local/share/fxsdk/sysroot/lib/gcc/sh3eb-elf/14.1.0/include",
+                "~/.local/share/fxsdk/sysroot/lib/gcc/sh3eb-elf/14.1.0/include-fixed",
+                "~/.local/share/fxsdk/sysroot/sh3eb-elf/include"
+            ],
+            "defines": [
+                "FX9860G"
+            ],
+            "compilerPath": "~/.local/bin/sh-elf-g++",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                "-Wall",
+                "-Wextra",
+                "-Os",
+                "-flto"
+            ]
+        }
+    ],
+    "version": 4
+}

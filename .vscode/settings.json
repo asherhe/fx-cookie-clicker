@@ -1,0 +1,11 @@
+{
+  "cmake.sourceDirectory": "/workspaces/fx-cookie-clicker/Cookie",
+  "files.associations": {
+    "*.ejs": "html",
+    "*.scm": "clojure",
+    "*.idl": "webidl",
+    "display.h": "c",
+    "call.h": "c",
+    "cmath": "cpp"
+  }
+}
