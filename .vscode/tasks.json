@@ -8,7 +8,7 @@
       "type": "shell",
       "command": "fxsdk build-fx",
       "options": {
-        "cwd": "${workspaceFolder}/Cookie"
+        "cwd": "${workspaceFolder}"
       },
       "problemMatcher": [],
       "group": {
