@@ -9,3 +9,11 @@ font3x5.png:
   grid.size: 3x5
   grid.padding: 1
   grid.border: 0
+
+building_data.csv:
+  custom-type: building-data
+  name: BUILD_DATA
+  name-name: BUILD_NAMES
+  name-cps: BUILD_CPS
+  name-price: BUILD_PRICES
+  name-upg-price: TIER_UPG_PRICE
