@@ -22,6 +22,7 @@ set(ASSETS
   assets-fx/big_cookie.png
   assets-fx/cookie.png
   assets-fx/ui_base.png
+  assets-fx/title.png
   assets-fx/info_bar.png
   assets-fx/tabs.png
   assets-fx/font3x5.png

@@ -1,5 +1,5 @@
 {
-  "cmake.sourceDirectory": "/workspaces/fx-cookie-clicker/Cookie",
+  "cmake.sourceDirectory": "/workspaces/fx-cookie-clicker",
   "files.associations": {
     "*.ejs": "html",
     "*.scm": "clojure",

@@ -10,6 +10,30 @@
  */
 const int NUM_BUILDS = 20;
 
+enum BuildType
+{
+  B_CURSOR = 0,
+  B_GRANDMA = 1,
+  B_FARM = 2,
+  B_MINE = 3,
+  B_FACTORY = 4,
+  B_BANK = 5,
+  B_TEMPLE = 6,
+  B_WIZARD_TOWER = 7,
+  B_SHIPMENT = 8,
+  B_ALCHEMY_LAB = 9,
+  B_PORTAL = 10,
+  B_TIME_MACHINE = 11,
+  B_ANTIMATTER_CONDENSER = 12,
+  B_PRISM = 13,
+  B_CHANCEMAKER = 14,
+  B_FRACTAL_ENGINE = 15,
+  B_JAVASCRIPT_CONSOLE = 16,
+  B_IDLEVERSE = 17,
+  B_CORTEX_BAKER = 18,
+  B_YOU = 19
+};
+
 /*
  * shortened display names for all the buildings
  * name length is limited to 6 characters to save space
@@ -51,6 +75,7 @@ const double TIER_UPG_REQ[] = {1, 5, 25, 50, 100, 150, 200, 250, 300, 350, 400, 
 class Building
 {
 public:
+  BuildType type;
   const char *name;         // building display name, max 6 chars
   double cps, base_cps;     // cookies per second
   double price, base_price; // cost to buy this building
@@ -58,7 +83,7 @@ public:
 
   Building() : name(nullptr), base_cps(0), base_price(0), qty(0) {}
 
-  Building(const char *name, double cps, double price) : name(name), base_cps(cps), base_price(price), qty(0)
+  Building(BuildType type) : type(type), name(BUILD_NAMES[type]), base_cps(BUILD_CPS[type]), base_price(BUILD_PRICES[type]), qty(0)
   {
     calc_cps();
     calc_price();
