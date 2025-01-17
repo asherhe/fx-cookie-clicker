@@ -4,7 +4,7 @@
 #include <gint/display.h>
 #include <gint/keyboard.h>
 
-Game::Game() : cookies(0), cookies_all(0), cps(0), ticks(0), tab_scroll(0), unlocked_buildings(2), message_type(MSG_NONE)
+Game::Game() : click_cookies(1), unlocked_buildings(2)
 {
   for (int i = 0; i < NUM_BUILDS; ++i)
   {
@@ -30,7 +30,8 @@ void Game::operator+=(double v)
 
 void Game::click()
 {
-  *this += 1;
+  *this += click_cookies;
+  ++cookie_clicks;
 }
 
 bool Game::buy_building(BuildType b)
@@ -71,7 +72,7 @@ void Game::switch_tab(SidebarTab t)
     sidebar_window = SIDEBAR_WINDOW;
     break;
   case TAB_STATS:
-    sidebar_sel_max = 0;
+    sidebar_sel_max = 5;
     sidebar_item_height = 8;
     sidebar_window = SIDEBAR_WINDOW;
     break;
@@ -332,10 +333,24 @@ void Game::render_tab_options()
 void Game::render_tab_stats()
 {
   char buf[21];
-  int base_y = sidebar_window.top + 2 + sidebar_dy;
 
-  // number of cookies
-  dprint(47, base_y, C_BLACK, "Cookies:%s", num_to_str_long(cookies, buf));
+  struct dwindow old_window = dwindow_set(sidebar_window);
+
+  int base_y = sidebar_window.top + 2 + sidebar_dy;
+  dprint(47, base_y, C_BLACK, "Cookies:%s", num_to_str_long(cookies, buf));                            // number of cookies
+  dprint(51, base_y + sidebar_item_height, C_BLACK, "All time:%s", num_to_str_long(cookies_all, buf)); // number of cookies (all time)
+  dprint(47, base_y + 2 * sidebar_item_height, C_BLACK, "CpS:%s", num_to_str_long(cps, buf));          // cps
+
+  int time_played = (int)(ticks * TICK), h, m, s;
+  s = time_played % 60;
+  m = (time_played /= 60) % 60;
+  h = time_played / 60;
+  dprint(47, base_y + 3 * sidebar_item_height, C_BLACK, "Time played:%d:%02d:%02d", h, m, s);
+
+  dprint(47, base_y + 4 * sidebar_item_height, C_BLACK, "Cookie clicks:%d", cookie_clicks);                  // times we've clicked the big cookie
+  dprint(47, base_y + 5 * sidebar_item_height, C_BLACK, "Cookies/click:%s", num_to_str(click_cookies, buf)); // how many cookies we get each time we click the big cookie
+
+  dwindow_set(old_window);
 }
 
 void Game::render_message_box()

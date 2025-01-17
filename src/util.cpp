@@ -50,7 +50,7 @@ char *num_to_str(double n, char *str)
   else
     out += sprintf(out, "%.0f", n);
 
-  if (k > 1)
+  if (k > 0)
   {
     if (k < NUM_SUFFIXES)
       strcpy(out, SUFFIX_STR[k - 1]);
@@ -96,7 +96,7 @@ char *num_to_str_long(double n, char *str)
   {
     int before = (int)(n * 0.001);
     double after = n - before * 1000;
-    sprintf(out, "%d,%.0f", before, after);
+    sprintf(out, "%d,%03.0f", before, after);
     return str;
   }
 

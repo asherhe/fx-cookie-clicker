@@ -94,6 +94,10 @@ public:
 private:
   // ticks elapsed since game open (used for animations)
   unsigned int ticks;
+  // number of cookies we get when we click the cookie
+  int click_cookies;
+  // number of times the big cookie has been clicked
+  int cookie_clicks;
 
   /* ui state */
 
