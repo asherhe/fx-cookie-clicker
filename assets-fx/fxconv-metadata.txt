@@ -11,9 +11,37 @@ font3x5.png:
   grid.border: 0
 
 building_data.csv:
-  custom-type: building-data
-  name: BUILD_DATA
-  name-name: BUILD_NAMES
-  name-cps: BUILD_CPS
-  name-price: BUILD_PRICES
-  name-upg-price: TIER_UPG_PRICE
+  custom-type: csv
+  name:  # not used by csv but still required by fxconv
+  
+  col-name.name: BUILD_NAMES
+  col-type.name: char[7]
+
+  col-name.cps: BUILD_CPS
+  col-type.cps: double
+
+  col-name.price: BUILD_PRICES
+  col-type.price: double
+
+upg_data.csv:
+  custom-type: csv
+  name: 
+
+  col-name.name: UPG_NAME
+  col-type.name: char[21]
+
+  col-name.price: UPG_PRICE
+  col-type.price: double
+
+  col-name.build: UPG_BUILDING
+  col-type.build: short
+
+  col-name.build-req: UPG_BUILD_REQ
+  col-type.build-req: int
+
+  col-name.desc1: UPG_DESC1
+  col-type.desc1: char[25]
+  col-name.desc2: UPG_DESC2
+  col-type.desc2: char[25]
+  col-name.desc3: UPG_DESC3
+  col-type.desc3: char[25]

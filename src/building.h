@@ -1,5 +1,5 @@
 /*
- * COOKIE CLICKER BUILDINGS
+ * COOKIE CLICKER BUILDINGS AND UPGRADES
  */
 
 #ifndef COOKIE_BUILD_H
@@ -10,46 +10,51 @@
  */
 const int NUM_BUILDS = 20;
 
-enum BuildType
+enum BuildType : short
 {
-  B_CURSOR = 0,
-  B_GRANDMA = 1,
-  B_FARM = 2,
-  B_MINE = 3,
-  B_FACTORY = 4,
-  B_BANK = 5,
-  B_TEMPLE = 6,
-  B_WIZARD_TOWER = 7,
-  B_SHIPMENT = 8,
-  B_ALCHEMY_LAB = 9,
-  B_PORTAL = 10,
-  B_TIME_MACHINE = 11,
-  B_ANTIMATTER_CONDENSER = 12,
-  B_PRISM = 13,
-  B_CHANCEMAKER = 14,
-  B_FRACTAL_ENGINE = 15,
-  B_JAVASCRIPT_CONSOLE = 16,
-  B_IDLEVERSE = 17,
-  B_CORTEX_BAKER = 18,
-  B_YOU = 19
+  B_CURSOR,
+  B_GRANDMA,
+  B_FARM,
+  B_MINE,
+  B_FACTORY,
+  B_BANK,
+  B_TEMPLE,
+  B_WIZARD_TOWER,
+  B_SHIPMENT,
+  B_ALCHEMY_LAB,
+  B_PORTAL,
+  B_TIME_MACHINE,
+  B_ANTIMATTER_CONDENSER,
+  B_PRISM,
+  B_CHANCEMAKER,
+  B_FRACTAL_ENGINE,
+  B_JAVASCRIPT_CONSOLE,
+  B_IDLEVERSE,
+  B_CORTEX_BAKER,
+  B_YOU,
 };
 
-/*
- * shortened display names for all the buildings
- * name length is limited to 6 characters to save space
- */
+/* shortened display names for all the buildings (max 6 chars) */
 extern char BUILD_NAMES[NUM_BUILDS][7];
 /* base cps of each building type */
 extern double BUILD_CPS[NUM_BUILDS];
 /* price of building the first one of every building */
 extern double BUILD_PRICES[NUM_BUILDS];
-/* upgrade base price */
-extern double TIER_UPG_PRICE[NUM_BUILDS];
 
-/* price multiplier of each upgrade tier */
-const double TIER_UPG_MULTIPLIER[] = {1, 5, 50, 5000, 500000, 50e6, 50e9, 50e12, 50e15, 50e18, 500e21, 5e27, 50e30, 500e33, 5e39};
-/* qty needed to unlock the next upgrade tier for a building */
-const double TIER_UPG_REQ[] = {1, 5, 25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600};
+/* UPGRADE DATA */
+
+/* number of upgrades available */
+const int NUM_UPGS = 60;
+/* name of each upgrade */
+extern char UPG_NAME[NUM_UPGS][21];
+/* cost to purchase each upgrade */
+extern double UPG_PRICE[NUM_UPGS];
+/* the building this upgrade is associated with */
+extern BuildType UPG_BUILDING[NUM_UPGS];
+/* the number of the associated building that we need to unlock this upgrade */
+extern int UPG_BUILD_REQ[NUM_UPGS];
+/* three lines of description for the upgrade's info box */
+extern char UPG_DESC1[NUM_UPGS][25], UPG_DESC2[NUM_UPGS][25], UPG_DESC3[NUM_UPGS][25];
 
 class Building
 {

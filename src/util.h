@@ -10,9 +10,7 @@
 /*
  * converts a given number into a string, using units of thousands, millions, billions, etc. when applicable.
  *
- * output is written to string `str`, which is returned by the function. for values in the interval [0, 1e15), the
- * resulting string will be at most 4 characters. values 1e15 and up will be at most 5 characters, and negative numbers
- * are one character longer than their positive version (because of the `-` character)
+ * output is written to string `str`, which is returned by the function. expect all outputs to be at most length 7
  *
  * LIST OF SUFFIXES
  * - k  - thousand
@@ -28,5 +26,20 @@
  * - Dc - decillion
  */
 char *num_to_str(double n, char *str);
+
+/*
+ * converts a given number to a string.
+ * - if number is below 1,000, write it with 2 decimal places
+ * - if number is below 1 million, write it with a comma separator at the thousands place
+ * - otherwise, write the number with 4 sig figs and a suffix.
+ */
+char *num_to_str_long(double n, char *str);
+
+/* MATH FUNCTIONS */
+// math.h isn't available for some reason, so here's a reimplementation of the ones i need
+
+double floor(double x);
+double mod(double a, double b);
+double pow(double x, int p);
 
 #endif // COOKIE_UTIL_H

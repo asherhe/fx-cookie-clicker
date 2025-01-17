@@ -1,5 +1,5 @@
 #include "building.h"
-// #include <math.h>
+#include "util.h"
 
 void Building::buy()
 {
@@ -20,10 +20,5 @@ void Building::calc_cps()
 
 void Building::calc_price()
 {
-  // price = base_price * pow(1.15, qty);
-
-  // math.h straight up just doesn't work so we find the power manually
-  price = base_price;
-  for (int i = 0; i < qty; ++i)
-    price *= 1.15;
+  price = base_price * pow(1.15, qty);
 }

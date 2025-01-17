@@ -29,6 +29,7 @@ set(ASSETS
   assets-fx/tabs.png
   assets-fx/font3x5.png
   assets-fx/building_data.csv
+  assets-fx/upg_data.csv
 )
 
 fxconv_declare_assets(${ASSETS} WITH_METADATA)

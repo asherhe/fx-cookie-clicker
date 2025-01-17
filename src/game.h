@@ -24,11 +24,18 @@ enum SidebarTab
   TAB_STATS
 };
 
+/* window that spans entire sidebar. dimensions: 20x6 chars */
+const struct dwindow SIDEBAR_WINDOW = {46, 9, 126, 55};
+/* window for buildings specifically */
+const struct dwindow BUILDINGS_WINDOW = {46, 19, 124, 55};
+
 class Game
 {
 public:
   /* number of cookies we currently have */
   double cookies;
+  /* total number of cookies we have ever baked */
+  double cookies_all;
   /* cookies baked by buildings per second */
   double cps;
 
@@ -39,6 +46,12 @@ public:
    * makes a new game
    */
   Game();
+
+  /*
+   * add cookies to our balance
+   * (also increases all-time cookie count)
+   */
+  void operator+=(double v);
 
   /*
    * click the big cookie
@@ -54,6 +67,11 @@ public:
    * switch the sidebar tab to the requested one
    */
   void switch_tab(SidebarTab t);
+
+  /*
+   * scroll to the i-th item in the sidebar
+   */
+  void sidebar_scroll(int i);
 
   /* GAME CONTROLS */
 
@@ -82,19 +100,32 @@ private:
   SidebarTab sidebar_tab; // active sidebar tab
   int tab_scroll;         // id of the leftmost tab to display
 
-  int sidebar_scroll;     // current scroll progress in sidebar. range is limited to [0, sidebar_scroll_max]
-  int sidebar_scroll_max; // max scroll limit, inclusive
-  int sidebar_dy;         // visual scroll offset, positive is down
+  int sidebar_sel;               // currently selected item in sidebar. range is limited to [0, sidebar_sel_max]
+  int sidebar_sel_max;           // max scroll limit, inclusive
+  struct dwindow sidebar_window; // dwindow that covers the rendering region for the sidebar items
+  int sidebar_item_height;       // vertical displacement between each item in the sidebar
+  int sidebar_item_maxy;         // maximum y-position the base of each sidebar item can be to remain onscreen
+  int sidebar_dy;                // visual scroll offset
+
+  int unlocked_buildings; // number of buildings visible in the UI
+
+  enum
+  {
+    MSG_NONE,     // no message box
+    MSG_UPG_INFO, // shows information about the currently selected upgrade
+  } message_type; // the state of the message box display
 
   /* recalculate current cps */
   void calculate_cps();
 
-  /* sidebar rendering functions */
-
+  /* sidebar rendering */
   void render_tab_buildings();
   void render_tab_upgrades();
   void render_tab_options();
   void render_tab_stats();
+
+  /* message box rendering */
+  void render_message_box();
 };
 
 #endif // COOKIE_GAME_H
