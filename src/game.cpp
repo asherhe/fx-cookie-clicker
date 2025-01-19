@@ -1,14 +1,15 @@
 #include "game.h"
 #include "util.h"
+#include "list.h"
 #include <string.h>
 #include <gint/display.h>
 #include <gint/keyboard.h>
 
-Game::Game() : click_cookies(1), unlocked_buildings(2)
+Game::Game() : upg_unlocked_list(), click_cookies(1), unlocked_buildings(2)
 {
   for (int i = 0; i < NUM_BUILDS; ++i)
   {
-    buildings[i] = Building((BuildType)i);
+    buildings[i] = Building((BuildType)i, this);
   }
 
   switch_tab(TAB_BUILDINGS);
@@ -40,8 +41,35 @@ bool Game::buy_building(BuildType b)
     return false;
   cookies -= buildings[b].price;
   buildings[b].buy();
+  ++num_buildings;
+  calc_cps();
+  return true;
+}
 
-  calculate_cps();
+bool Game::buy_upgrade(int u)
+{
+  if (upg_bought[u] || cookies < UPG_PRICE[u])
+    return false;
+
+  cookies -= UPG_PRICE[u];
+
+  // remove u from unlocked list
+  if (upg_unlocked[u])
+  {
+    upg_unlocked[u] = 0;
+    for (auto it = upg_unlocked_list.begin(); it != upg_unlocked_list.end(); ++it)
+      if (*it == u)
+      {
+        upg_unlocked_list.erase(it);
+        if (sidebar_tab == TAB_UPGRADES)
+          sidebar_sel_max = max(upg_unlocked_list.size() - 1, 0);
+        break;
+      }
+  }
+
+  upg_bought[u] = 1;
+
+  calc_cps();
 
   return true;
 }
@@ -62,7 +90,7 @@ void Game::switch_tab(SidebarTab t)
     sidebar_window = BUILDINGS_WINDOW;
     break;
   case TAB_UPGRADES:
-    sidebar_sel_max = NUM_UPGS - 1;
+    sidebar_sel_max = max(upg_unlocked_list.size() - 1, 0);
     sidebar_item_height = 15;
     sidebar_window = SIDEBAR_WINDOW;
     break;
@@ -72,7 +100,7 @@ void Game::switch_tab(SidebarTab t)
     sidebar_window = SIDEBAR_WINDOW;
     break;
   case TAB_STATS:
-    sidebar_sel_max = 5;
+    sidebar_sel_max = 6;
     sidebar_item_height = 8;
     sidebar_window = SIDEBAR_WINDOW;
     break;
@@ -99,6 +127,17 @@ void Game::sidebar_scroll(int i)
     sidebar_dy -= sel_draw_y;
   else if (sel_draw_y > sidebar_item_maxy)
     sidebar_dy -= sel_draw_y - sidebar_item_maxy;
+}
+
+void Game::unlock_upgrade(int u)
+{
+  if (upg_bought[u] || upg_unlocked[u])
+    return;
+  upg_unlocked[u] = 1;
+  upg_unlocked_list.push_back(u);
+
+  if (sidebar_tab == TAB_UPGRADES)
+    sidebar_sel_max = upg_unlocked_list.size() - 1;
 }
 
 void Game::key_pressed(key_event_t k)
@@ -139,12 +178,14 @@ void Game::key_pressed(key_event_t k)
       case TAB_BUILDINGS:
         buy_building((BuildType)sidebar_sel);
         break;
-        // TODO: buy upgrades
+      case TAB_UPGRADES:
+        buy_upgrade(upg_unlocked_list.at(sidebar_sel));
+        break;
       default:
         break;
       }
       break;
-    case KEY_1:
+    case KEY_MINUS:
       if (sidebar_tab == TAB_UPGRADES)
         message_type = MSG_UPG_INFO;
       break;
@@ -232,13 +273,13 @@ void Game::render()
   /* tabs */
   for (int i = 0; i < 3; ++i)
   {
-    dsubimage(45 + i * 21, 55,
+    dsubimage(46 + i * 21, 56,
               &img_tabs,
-              (tab_scroll + i == sidebar_tab) ? 21 : 0,
-              9 * (tab_scroll + i + 1),
-              21, 9, DIMAGE_NOCLIP);
+              (tab_scroll + i == sidebar_tab) ? 20 : 0,
+              8 * (tab_scroll + i + 1),
+              20, 8, DIMAGE_NOCLIP);
   }
-  dsubimage(108, 55, &img_tabs, 0, 0, 19, 9, DIMAGE_NOCLIP); // tab scroll button
+  dsubimage(109, 56, &img_tabs, 0, 0, 18, 8, DIMAGE_NOCLIP); // tab scroll button
 
   // draw message box
   if (message_type != MSG_NONE)
@@ -247,13 +288,17 @@ void Game::render()
   dupdate();
 }
 
-void Game::calculate_cps()
+void Game::calc_cps()
 {
   cps = 0;
   for (int i = 0; i < NUM_BUILDS; ++i)
   {
+    buildings[i].calc_cps();
     cps += buildings[i].qty * buildings[i].cps;
   }
+
+  // clicking the cookie has the same upgrades as the cursor building
+  click_cookies = buildings[B_CURSOR].cps_multiplier;
 }
 
 void Game::render_tab_buildings()
@@ -308,18 +353,27 @@ void Game::render_tab_upgrades()
   struct dwindow old_window = dwindow_set(sidebar_window);
 
   int draw_y = sidebar_window.top + 2 + sidebar_dy;
-  for (int i = 0; i <= sidebar_sel_max; ++i, draw_y += sidebar_item_height)
+
+  if (upg_unlocked_list.empty())
   {
-    // upgrade name
-    dtext(47, draw_y, C_BLACK, UPG_NAME[i]);
+    dtext(47, draw_y, C_BLACK, "NO UPGRADES");
+    dtext(47, draw_y + 6, C_BLACK, "AVAILABLE");
+  }
+  else
+  {
+    for (auto it = upg_unlocked_list.begin(); it != upg_unlocked_list.end(); ++it, draw_y += sidebar_item_height)
+    {
+      // upgrade name
+      dtext(47, draw_y, C_BLACK, UPG_NAME[*it]);
 
-    // buy/info button, swap animation
-    if (i == sidebar_sel)
-      dtext_opt(47, draw_y + 6, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, (ticks & 0b10000) ? "[EXE]BUY" : "[1]INFO");
+      // buy/info button, swap animation
+      if (*it == sidebar_sel)
+        dtext_opt(47, draw_y + 6, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, (ticks & 0b10000) ? "[EXE]BUY" : "[-]INFO");
 
-    // price
-    dtext_opt(119, draw_y + 6, C_BLACK, C_WHITE, DTEXT_RIGHT, DTEXT_TOP, num_to_str(UPG_PRICE[i], buf));
-    dimage(121, draw_y + 6, &img_cookie);
+      // price
+      dtext_opt(119, draw_y + 6, C_BLACK, C_WHITE, DTEXT_RIGHT, DTEXT_TOP, num_to_str(UPG_PRICE[*it], buf));
+      dimage(121, draw_y + 6, &img_cookie);
+    }
   }
 
   dwindow_set(old_window);
@@ -350,6 +404,8 @@ void Game::render_tab_stats()
   dprint(47, base_y + 4 * sidebar_item_height, C_BLACK, "Cookie clicks:%d", cookie_clicks);                  // times we've clicked the big cookie
   dprint(47, base_y + 5 * sidebar_item_height, C_BLACK, "Cookies/click:%s", num_to_str(click_cookies, buf)); // how many cookies we get each time we click the big cookie
 
+  dprint(47, base_y + 6 * sidebar_item_height, C_BLACK, "Buildings owned:%d", num_buildings); // number of buildings we own
+
   dwindow_set(old_window);
 }
 
@@ -360,17 +416,20 @@ void Game::render_message_box()
   drect_border(12, 6, 115, 57, C_WHITE, 1, C_BLACK); // outer border
   drect_border(14, 8, 113, 55, C_WHITE, 1, C_BLACK); // inner border
 
+  int sel_id;
   switch (message_type)
   {
   case MSG_UPG_INFO:
+    sel_id = upg_unlocked_list.at(sidebar_sel);
+
     // window title
     dtext(40, 10, C_BLACK, "==UPG INFO==");
     dline(15, 16, 112, 16, C_BLACK);
 
-    dtext(16, 18, C_BLACK, UPG_NAME[sidebar_sel]);  // upgrade name
-    dtext(16, 27, C_BLACK, UPG_DESC1[sidebar_sel]); // description line 1
-    dtext(16, 33, C_BLACK, UPG_DESC2[sidebar_sel]); // description line 2
-    dtext(16, 39, C_BLACK, UPG_DESC3[sidebar_sel]); // description line 3
+    dtext(16, 18, C_BLACK, UPG_NAME[sel_id]);  // upgrade name
+    dtext(16, 27, C_BLACK, UPG_DESC1[sel_id]); // description line 1
+    dtext(16, 33, C_BLACK, UPG_DESC2[sel_id]); // description line 2
+    dtext(16, 39, C_BLACK, UPG_DESC3[sel_id]); // description line 3
     break;
 
   default:

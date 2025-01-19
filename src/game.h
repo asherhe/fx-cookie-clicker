@@ -6,6 +6,7 @@
 #define COOKIE_GAME_H
 
 #include "building.h"
+#include "list.h"
 #include <gint/keyboard.h>
 #include <gint/display.h>
 
@@ -41,11 +42,24 @@ public:
 
   /* data about all the building types */
   Building buildings[NUM_BUILDS];
+  /* how many buildings do we have? */
+  int num_buildings;
+
+  /* keeps track of which upgrades have been bought */
+  bool upg_bought[NUM_UPGS];
+
+  /* keeps track of which upgrades have been unlocked */
+  bool upg_unlocked[NUM_UPGS];
+
+  /* a list, in order of when they were added, of all unlocked upgrades */
+  list_int upg_unlocked_list;
 
   /*
    * makes a new game
    */
   Game();
+
+  //////////// GAME FUNCTIONS ////////////
 
   /*
    * add cookies to our balance
@@ -64,6 +78,13 @@ public:
   bool buy_building(BuildType b);
 
   /*
+   * attempt to buy the upgrade with id `u`. return `false` if insufficient cookies
+   */
+  bool buy_upgrade(int u);
+
+  //////////// UI CONTROLS ////////////
+
+  /*
    * switch the sidebar tab to the requested one
    */
   void switch_tab(SidebarTab t);
@@ -73,7 +94,12 @@ public:
    */
   void sidebar_scroll(int i);
 
-  /* GAME CONTROLS */
+  /*
+   * add the upgrade with id `u` to the list of available upgrades
+   */
+  void unlock_upgrade(int u);
+
+  //////////// GAME LOOP ////////////
 
   /*
    * handler for key presses
@@ -120,7 +146,7 @@ private:
   } message_type; // the state of the message box display
 
   /* recalculate current cps */
-  void calculate_cps();
+  void calc_cps();
 
   /* sidebar rendering */
   void render_tab_buildings();

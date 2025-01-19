@@ -56,18 +56,26 @@ extern int UPG_BUILD_REQ[NUM_UPGS];
 /* three lines of description for the upgrade's info box */
 extern char UPG_DESC1[NUM_UPGS][25], UPG_DESC2[NUM_UPGS][25], UPG_DESC3[NUM_UPGS][25];
 
+class Game;
+
 class Building
 {
 public:
   BuildType type;
-  const char *name;         // building display name, max 6 chars
-  double cps, base_cps;     // cookies per second
-  double price, base_price; // cost to buy this building
-  int qty;                  // amount of this building we own
+  const char *name;                     // building display name, max 6 chars
+  double cps, base_cps, cps_multiplier; // cookies per second
+  double price, base_price;             // cost to buy this building
+  int qty;                              // amount of this building we own
 
-  Building() : name(nullptr), base_cps(0), base_price(0), qty(0) {}
+  Building() : name(nullptr), base_cps(0), cps_multiplier(1), base_price(0), qty(0) {}
 
-  Building(BuildType type) : type(type), name(BUILD_NAMES[type]), base_cps(BUILD_CPS[type]), base_price(BUILD_PRICES[type]), qty(0)
+  Building(BuildType type, Game *game)
+      : type(type),
+        name(BUILD_NAMES[type]),
+        base_cps(BUILD_CPS[type]),
+        cps_multiplier(1),
+        base_price(BUILD_PRICES[type]),
+        qty(0), game(game)
   {
     calc_cps();
     calc_price();
@@ -75,12 +83,14 @@ public:
 
   /* buy one instance of this building */
   void buy();
-  /* buy several buildings */
-  void buy(int n);
 
-private:
   /* calculates the cps of this building */
   void calc_cps();
+
+private:
+  /* game instance this building exists in */
+  Game *game;
+
   /* calculates the price of this building */
   void calc_price();
 };

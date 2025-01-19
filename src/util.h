@@ -35,11 +35,16 @@ char *num_to_str(double n, char *str);
  */
 char *num_to_str_long(double n, char *str);
 
-/* MATH FUNCTIONS */
-// math.h isn't available for some reason, so here's a reimplementation of the ones i need
+/*
+ * MATH FUNCTIONS
+ * math.h is not available in freestanding mode for some reason,
+ * so here is the reimplementation of a few functions i need
+ */
 
 double floor(double x);
 double mod(double a, double b);
 double pow(double x, int p);
+int max(int a, int b);
+int min(int a, int b);
 
 #endif // COOKIE_UTIL_H

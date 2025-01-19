@@ -18,6 +18,8 @@ set(SOURCES
   src/building.cpp
   src/util.h
   src/util.cpp
+  src/list.h
+  src/list.cpp
 )
 
 set(ASSETS
