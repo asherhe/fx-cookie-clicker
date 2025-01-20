@@ -6,30 +6,28 @@
 /*
  * list class
  * similar to the STL list except with less features
- * apparently that doesn't work here either
- *
- * templates also seem to really mess with malloc() so this list is restricted to the int type
  */
 
-class list_int
+template <typename T>
+class list
 {
 public:
   /* create a new empty list */
-  list_int();
+  list();
 
   /* create a new list using the values from another list */
-  list_int(const list_int &other);
+  list(const list &other);
 
   /* copy the values from another list to this list */
-  list_int &operator=(const list_int &other);
+  list &operator=(const list &other);
 
   /* deallocate all the memory used by this list */
-  ~list_int();
+  ~list();
 
 private:
   struct ListNode
   {
-    int val;
+    T val;
     ListNode *prev, *next;
     ListNode();
     ListNode(int v);
@@ -40,7 +38,7 @@ private:
 public:
   class iterator
   {
-    friend class list_int;
+    friend class list;
 
   public:
     int &operator*();

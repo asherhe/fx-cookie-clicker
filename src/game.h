@@ -57,7 +57,7 @@ public:
   /* keeps track of which upgrades have been unlocked */
   bool upg_unlocked[NUM_UPGS];
   /* a list, in order of when they were added, of all unlocked upgrades */
-  list_int upg_unlocked_list;
+  list<int> upg_unlocked_list;
 
   /* time (in ticks) in between autosaves */
   unsigned autosave_interval;
