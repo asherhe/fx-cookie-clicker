@@ -34,10 +34,10 @@ upg_data.csv:
   col-type.price: double
 
   col-name.build: UPG_BUILDING
-  col-type.build: short
+  col-type.build: uint8
 
   col-name.build-req: UPG_BUILD_REQ
-  col-type.build-req: int
+  col-type.build-req: uint16
 
   col-name.desc1: UPG_DESC1
   col-type.desc1: char[25]

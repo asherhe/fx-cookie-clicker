@@ -1,4 +1,5 @@
 #include "util.h"
+#include <stddef.h>
 #include <stdio.h>
 #include <string.h>
 #include <gint/display.h>
@@ -105,17 +106,16 @@ char *num_to_str_long(double n, char *str)
   for (; n >= 1000.0; n /= 1000.0, ++k)
     ;
 
-  sprintf(out, "%.4g", n);
+  out += sprintf(out, "%.4g", n);
 
   if (k < NUM_SUFFIXES)
     strcpy(out, SUFFIX_STR[k - 1]);
   else if (k <= 33)
   {
     // write exponent in superscript
-    char *sup_start = out;
     sprintf(out, "%d", 3 * k);
-    *(sup_start++) -= 0x20;
-    *sup_start -= 0x20;
+    *(out++) -= 0x20;
+    *out -= 0x20;
   }
   else
     strcpy(out, "??");

@@ -12,7 +12,8 @@
                 "~/.local/share/fxsdk/sysroot/sh3eb-elf/include"
             ],
             "defines": [
-                "FX9860G"
+                "FX9860G",
+                "COOKIE_VERSION=\"0.0.1\""
             ],
             "compilerPath": "~/.local/bin/sh-elf-g++",
             "cppStandard": "c++14",

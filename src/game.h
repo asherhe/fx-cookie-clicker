@@ -10,17 +10,24 @@
 #include <gint/keyboard.h>
 #include <gint/display.h>
 
-// duration of each tick in s
+/* duration of each tick (s) */
 const double TICK = 0.100;
 
-// number of tabs we have
-const int NUM_TABS = 4;
+/* location of savefiles */
+const char SAVE_LOC[] = "SAVE.CLK";
 
-// all the tab options available
+/* size of file buffer for reading/writing, 4kB should be enough */
+const int FILE_BUF_SIZE = 4096;
+
+/* number of tabs we have */
+const int NUM_TABS = 5;
+
+/* all the tabs that the game has */
 enum SidebarTab
 {
   TAB_BUILDINGS,
   TAB_UPGRADES,
+  TAB_ACHIEVEMENTS,
   TAB_OPTIONS,
   TAB_STATS
 };
@@ -47,17 +54,26 @@ public:
 
   /* keeps track of which upgrades have been bought */
   bool upg_bought[NUM_UPGS];
-
   /* keeps track of which upgrades have been unlocked */
   bool upg_unlocked[NUM_UPGS];
-
   /* a list, in order of when they were added, of all unlocked upgrades */
   list_int upg_unlocked_list;
+
+  /* time (in ticks) in between autosaves */
+  unsigned autosave_interval;
 
   /*
    * makes a new game
    */
   Game();
+
+  //////////// SAVING AND LOADING ////////////
+
+  /* writes a new savegame at `SAVE_LOC` */
+  bool save_game();
+
+  /* tries to load a savegame at `SAVE_LOC`. if file `SAVE_LOC` does not exist, return false */
+  bool load_game();
 
   //////////// GAME FUNCTIONS ////////////
 
@@ -119,25 +135,30 @@ public:
 
 private:
   // ticks elapsed since game open (used for animations)
-  unsigned int ticks;
+  unsigned ticks;
+  // time till next autosave
+  unsigned autosave_timer;
   // number of cookies we get when we click the cookie
-  int click_cookies;
+  double click_cookies;
   // number of times the big cookie has been clicked
-  int cookie_clicks;
+  unsigned cookie_clicks;
+  // cookies we got from clicking
+  double cookies_from_click;
 
   /* ui state */
 
   SidebarTab sidebar_tab; // active sidebar tab
   int tab_scroll;         // id of the leftmost tab to display
 
-  int sidebar_sel;               // currently selected item in sidebar. range is limited to [0, sidebar_sel_max]
-  int sidebar_sel_max;           // max scroll limit, inclusive
+  int sidebar_sel;               // currently selected item in sidebar. range is limited to [0, sidebar_sel_n)
+  int sidebar_sel_n;             // number of selectable options
   struct dwindow sidebar_window; // dwindow that covers the rendering region for the sidebar items
   int sidebar_item_height;       // vertical displacement between each item in the sidebar
   int sidebar_item_maxy;         // maximum y-position the base of each sidebar item can be to remain onscreen
   int sidebar_dy;                // visual scroll offset
 
   int unlocked_buildings; // number of buildings visible in the UI
+  bool new_upgs;          // shows unread badge on upgrade tab if new upgrades are available
 
   enum
   {
@@ -148,9 +169,13 @@ private:
   /* recalculate current cps */
   void calc_cps();
 
+  /* set the number of selection options, changing the cursor possition if it goes out of bounds */
+  void set_scroll_sel_n(int n);
+
   /* sidebar rendering */
   void render_tab_buildings();
   void render_tab_upgrades();
+  void render_tab_achievements();
   void render_tab_options();
   void render_tab_stats();
 

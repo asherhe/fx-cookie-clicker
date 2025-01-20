@@ -20,7 +20,7 @@ void Building::calc_cps()
   cps_multiplier = 1.0;
 
   // cps bonus from the thousand fingers upgrade
-  double thousand_fingers = 0.0;
+  thousand_fingers = 0.0;
   if (type == B_CURSOR)
   {
     for (int i = 0; i < 15; ++i)

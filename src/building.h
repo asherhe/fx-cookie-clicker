@@ -5,12 +5,14 @@
 #ifndef COOKIE_BUILD_H
 #define COOKIE_BUILD_H
 
+#include <stdint.h>
+
 /*
  * number of building types
  */
 const int NUM_BUILDS = 20;
 
-enum BuildType : short
+enum BuildType : uint8_t
 {
   B_CURSOR,
   B_GRANDMA,
@@ -44,7 +46,7 @@ extern double BUILD_PRICES[NUM_BUILDS];
 /* UPGRADE DATA */
 
 /* number of upgrades available */
-const int NUM_UPGS = 60;
+const int NUM_UPGS = 195;
 /* name of each upgrade */
 extern char UPG_NAME[NUM_UPGS][21];
 /* cost to purchase each upgrade */
@@ -52,28 +54,29 @@ extern double UPG_PRICE[NUM_UPGS];
 /* the building this upgrade is associated with */
 extern BuildType UPG_BUILDING[NUM_UPGS];
 /* the number of the associated building that we need to unlock this upgrade */
-extern int UPG_BUILD_REQ[NUM_UPGS];
+extern int16_t UPG_BUILD_REQ[NUM_UPGS];
 /* three lines of description for the upgrade's info box */
 extern char UPG_DESC1[NUM_UPGS][25], UPG_DESC2[NUM_UPGS][25], UPG_DESC3[NUM_UPGS][25];
 
 class Game;
 
-class Building
+struct Building
 {
-public:
   BuildType type;
   const char *name;                     // building display name, max 6 chars
   double cps, base_cps, cps_multiplier; // cookies per second
   double price, base_price;             // cost to buy this building
-  int qty;                              // amount of this building we own
+  uint16_t qty;                         // amount of this building we own
+  double thousand_fingers;              // for B_CURSOR only: bonus cookies from the Thousand Fingers upgrade
+  Game *game;                           // game instance this building exists in
 
-  Building() : name(nullptr), base_cps(0), cps_multiplier(1), base_price(0), qty(0) {}
+  Building() : name(nullptr), base_cps(0.0), cps_multiplier(1.0), base_price(0.0), qty(0) {}
 
   Building(BuildType type, Game *game)
       : type(type),
         name(BUILD_NAMES[type]),
         base_cps(BUILD_CPS[type]),
-        cps_multiplier(1),
+        cps_multiplier(1.0),
         base_price(BUILD_PRICES[type]),
         qty(0), game(game)
   {
@@ -86,11 +89,6 @@ public:
 
   /* calculates the cps of this building */
   void calc_cps();
-
-private:
-  /* game instance this building exists in */
-  Game *game;
-
   /* calculates the price of this building */
   void calc_price();
 };

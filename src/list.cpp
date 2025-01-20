@@ -1,4 +1,5 @@
 #include "list.h"
+#include <stddef.h>
 // standard c++ memory allocation doesn't work, we have to use gint's
 #include <gint/kmalloc.h>
 
@@ -64,7 +65,7 @@ list_int::iterator::iterator(ListNode *node) : node(node) {}
 list_int::iterator list_int::begin() { return iterator(sentinel.next); }
 list_int::iterator list_int::end() { return iterator(&sentinel); }
 
-unsigned list_int::size() { return list_size; }
+size_t list_int::size() { return list_size; }
 bool list_int::empty() { return list_size == 0; }
 
 int list_int::front() { return sentinel.next->val; }

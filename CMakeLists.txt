@@ -2,7 +2,7 @@
 # toolchain file and module path of the fxSDK
 
 cmake_minimum_required(VERSION 3.15)
-project(Cookie)
+project(Cookie VERSION 0.0.1)
 
 include(GenerateG1A)
 include(Fxconv)
@@ -20,6 +20,8 @@ set(SOURCES
   src/util.cpp
   src/list.h
   src/list.cpp
+  src/files.h
+  src/files.cpp
 )
 
 set(ASSETS
@@ -37,10 +39,13 @@ set(ASSETS
 fxconv_declare_assets(${ASSETS} WITH_METADATA)
 
 add_executable(cookie ${SOURCES} ${ASSETS})
-target_compile_options(cookie PRIVATE -Wall -Wextra -Os -flto)
+target_compile_options(cookie PRIVATE -Wall -Wextra -Os -flto -DCOOKIE_VERSION="${PROJECT_VERSION}")
 target_link_libraries(cookie Gint::Gint)
 
-generate_g1a(TARGET cookie
+generate_g1a(
+  TARGET cookie
   OUTPUT "Cookie.g1a"
   NAME "Cookie"
-  ICON assets-fx/icon.png)
+  ICON assets-fx/icon.png
+  VERSION ${PROJECT_VERSION}
+)
