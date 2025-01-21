@@ -4,15 +4,15 @@
 #include <gint/kmalloc.h>
 
 template <typename T>
-list<T>::list() : list_size(0)
+list<T>::list() : size_(0)
 {
-  sentinel.prev = sentinel.next = &sentinel;
+  sentinel_.prev = sentinel_.next = &sentinel_;
 }
 
 template <typename T>
 list<T>::list(const list &other)
 {
-  sentinel.prev = sentinel.next = &sentinel;
+  sentinel_.prev = sentinel_.next = &sentinel_;
   *this = other;
 }
 
@@ -20,11 +20,11 @@ template <typename T>
 list<T> &list<T>::operator=(const list &other)
 {
   clear();
-  list_size = other.list_size;
-  if (list_size)
+  size_ = other.size_;
+  if (size_)
   {
-    ListNode *curr = &sentinel, *copy = other.sentinel.next;
-    while (copy != &other.sentinel)
+    ListNode *curr = &sentinel_, *copy = other.sentinel_.next;
+    while (copy != &other.sentinel_)
     {
       ListNode *new_node = (ListNode *)kmalloc(sizeof(ListNode), NULL);
       new_node->val = copy->val;
@@ -51,48 +51,29 @@ template <typename T>
 list<T>::ListNode::ListNode(int v) : val(v) {}
 
 template <typename T>
-int &list<T>::iterator::operator*() { return node->val; }
-
-template <typename T>
 typename list<T>::iterator &list<T>::iterator::operator++()
 {
-  node = node->next;
+  node_ = node_->next;
   return *this;
 }
 
 template <typename T>
 typename list<T>::iterator &list<T>::iterator::operator--()
 {
-  node = node->prev;
+  node_ = node_->prev;
   return *this;
 }
 
 template <typename T>
-bool list<T>::iterator::operator==(const iterator &it) { return node == it.node; }
+bool list<T>::iterator::operator==(const iterator &it) { return node_ == it.node_; }
 template <typename T>
-bool list<T>::iterator::operator!=(const iterator &it) { return node != it.node; }
+bool list<T>::iterator::operator!=(const iterator &it) { return node_ != it.node_; }
 
 template <typename T>
-list<T>::iterator::iterator(ListNode *node) : node(node) {}
+list<T>::iterator::iterator(ListNode *node) : node_(node) {}
 
 template <typename T>
-typename list<T>::iterator list<T>::begin() { return iterator(sentinel.next); }
-template <typename T>
-typename list<T>::iterator list<T>::end() { return iterator(&sentinel); }
-
-template <typename T>
-size_t list<T>::size() { return list_size; }
-
-template <typename T>
-bool list<T>::empty() { return list_size == 0; }
-
-template <typename T>
-int list<T>::front() { return sentinel.next->val; }
-template <typename T>
-int list<T>::back() { return sentinel.prev->val; }
-
-template <typename T>
-int list<T>::at(int i)
+T list<T>::at(size_t i)
 {
   iterator it = begin();
   for (; i > 0; --i, ++it)
@@ -103,9 +84,9 @@ int list<T>::at(int i)
 template <typename T>
 void list<T>::clear()
 {
-  list_size = 0;
-  ListNode *curr = sentinel.next, *next;
-  for (; curr != &sentinel; curr = next)
+  size_ = 0;
+  ListNode *curr = sentinel_.next, *next;
+  for (; curr != &sentinel_; curr = next)
   {
     next = curr;
     kfree(curr);
@@ -113,11 +94,11 @@ void list<T>::clear()
 }
 
 template <typename T>
-typename list<T>::iterator list<T>::insert(const iterator &pos, int v)
+typename list<T>::iterator list<T>::insert(const iterator &pos, T v)
 {
-  ++list_size;
+  ++size_;
 
-  ListNode *new_node = (ListNode *)kmalloc(sizeof(ListNode), NULL), *ins_pos = pos.node;
+  ListNode *new_node = (ListNode *)kmalloc(sizeof(ListNode), NULL), *ins_pos = pos.node_;
   new_node->val = v;
   new_node->prev = ins_pos->prev;
   new_node->next = ins_pos;
@@ -126,11 +107,11 @@ typename list<T>::iterator list<T>::insert(const iterator &pos, int v)
 }
 
 template <typename T>
-typename list<T>::iterator list<T>::erase(iterator it)
+typename list<T>::iterator list<T>::erase(const iterator &it)
 {
-  --list_size;
+  --size_;
 
-  ListNode *node = it.node;
+  ListNode *node = it.node_;
   node->prev->next = node->next;
   node->next->prev = node->prev;
 
@@ -140,12 +121,12 @@ typename list<T>::iterator list<T>::erase(iterator it)
 }
 
 template <typename T>
-void list<T>::push_front(int v) { insert(begin(), v); }
+void list<T>::push_front(T v) { insert(begin(), v); }
 template <typename T>
-void list<T>::push_back(int v) { insert(end(), v); }
+void list<T>::push_back(T v) { insert(end(), v); }
 template <typename T>
 void list<T>::pop_front() { erase(begin()); }
 template <typename T>
-void list<T>::pop_back() { erase(iterator(sentinel.prev)); }
+void list<T>::pop_back() { erase(iterator(sentinel_.prev)); }
 
 template class list<int>;

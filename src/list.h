@@ -31,24 +31,25 @@ private:
     ListNode *prev, *next;
     ListNode();
     ListNode(int v);
-  } sentinel;
+  } sentinel_;
 
-  size_t list_size;
+  size_t size_;
 
 public:
+  /* iterator to allow us to traverse through the list */
   class iterator
   {
     friend class list;
 
   public:
-    int &operator*();
+    inline T &operator*() const { return node_->val; }
     iterator &operator++();
     iterator &operator--();
     bool operator==(const iterator &it);
     bool operator!=(const iterator &it);
 
   private:
-    ListNode *node;
+    ListNode *node_;
 
     /* create a new list iterator with a given node */
     iterator(ListNode *node);
@@ -56,35 +57,36 @@ public:
 
 public:
   /* iterator to first element of list */
-  iterator begin();
+  inline iterator begin() { return iterator(sentinel_.next); }
   /* iterator to end of list (note: not last element!) */
-  iterator end();
+  inline iterator end() { return iterator(&sentinel_); }
 
   /* number of elements in this list */
-  size_t size();
+  inline size_t size() const { return size_; }
   /* is the list empty? */
-  bool empty();
+  inline bool empty() const { return size_ == 0; }
 
   /* first element in this list */
-  int front();
+  inline T front() const { return sentinel_.next->val; }
   /* last element in this list */
-  int back();
+  inline T back() const { return sentinel_.prev->val; }
+
   /* get the i-th element in this list */
-  int at(int i);
+  T at(size_t i);
 
   /* clear the contents of this list */
   void clear();
 
   /* insert a value `v` before `pos`. return a new iterator pointing to `v` */
-  iterator insert(const iterator &pos, int v);
+  iterator insert(const iterator &pos, T v);
 
   /* erase the element `it` points to. return the iterator after the removed element */
-  iterator erase(iterator it);
+  iterator erase(const iterator &it);
 
   /* add a value to the front of the list */
-  void push_front(int v);
+  void push_front(T v);
   /* add a value to the back of the list */
-  void push_back(int v);
+  void push_back(T v);
   /* remove the first element of the list */
   void pop_front();
   /* remove the last element of the list */
