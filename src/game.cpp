@@ -718,10 +718,10 @@ void Game::render_message_box()
     dtext(40, 10, C_BLACK, "==UPG INFO==");
     dline(15, 16, 112, 16, C_BLACK);
 
-    dtext(16, 18, C_BLACK, UPG_NAME[sel_id]);  // upgrade name
-    dtext(16, 27, C_BLACK, UPG_DESC1[sel_id]); // description line 1
-    dtext(16, 33, C_BLACK, UPG_DESC2[sel_id]); // description line 2
-    dtext(16, 39, C_BLACK, UPG_DESC3[sel_id]); // description line 3
+    dtext(16, 18, C_BLACK, UPG_NAME[sel_id]);         // upgrade name
+    dtext(16, 27, C_BLACK, DESCS[UPG_DESC1[sel_id]]); // description line 1
+    dtext(16, 33, C_BLACK, DESCS[UPG_DESC2[sel_id]]); // description line 2
+    dtext(16, 39, C_BLACK, DESCS[UPG_DESC3[sel_id]]); // description line 3
     break;
 
   default:

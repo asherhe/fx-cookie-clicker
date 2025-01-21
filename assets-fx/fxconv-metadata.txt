@@ -40,8 +40,13 @@ upg_data.csv:
   col-type.build-req: uint16
 
   col-name.desc1: UPG_DESC1
-  col-type.desc1: char[25]
+  col-type.desc1: uint16
   col-name.desc2: UPG_DESC2
-  col-type.desc2: char[25]
+  col-type.desc2: uint16
   col-name.desc3: UPG_DESC3
-  col-type.desc3: char[25]
+  col-type.desc3: uint16
+
+descs.txt:
+  custom-type: strs
+  name: DESCS
+  length: 24

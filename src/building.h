@@ -43,21 +43,6 @@ extern double BUILD_CPS[NUM_BUILDS];
 /* price of building the first one of every building */
 extern double BUILD_PRICES[NUM_BUILDS];
 
-/* UPGRADE DATA */
-
-/* number of upgrades available */
-const int NUM_UPGS = 195;
-/* name of each upgrade */
-extern char UPG_NAME[NUM_UPGS][21];
-/* cost to purchase each upgrade */
-extern double UPG_PRICE[NUM_UPGS];
-/* the building this upgrade is associated with */
-extern BuildType UPG_BUILDING[NUM_UPGS];
-/* the number of the associated building that we need to unlock this upgrade */
-extern int16_t UPG_BUILD_REQ[NUM_UPGS];
-/* three lines of description for the upgrade's info box */
-extern char UPG_DESC1[NUM_UPGS][25], UPG_DESC2[NUM_UPGS][25], UPG_DESC3[NUM_UPGS][25];
-
 class Game;
 
 struct Building

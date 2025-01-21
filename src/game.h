@@ -37,6 +37,25 @@ const struct dwindow SIDEBAR_WINDOW = {46, 9, 126, 55};
 /* window for buildings specifically */
 const struct dwindow BUILDINGS_WINDOW = {46, 19, 124, 55};
 
+const int NUM_DESCS = 92;
+/* lines of descriptions that can be put in the message window */
+extern char DESCS[NUM_DESCS][25];
+
+/* UPGRADE DATA */
+
+/* number of upgrades available */
+const int NUM_UPGS = 195;
+/* name of each upgrade */
+extern char UPG_NAME[NUM_UPGS][21];
+/* cost to purchase each upgrade */
+extern double UPG_PRICE[NUM_UPGS];
+/* the building this upgrade is associated with */
+extern BuildType UPG_BUILDING[NUM_UPGS];
+/* the number of the associated building that we need to unlock this upgrade */
+extern int16_t UPG_BUILD_REQ[NUM_UPGS];
+/* three lines of description for the upgrade's info box, points to DESC */
+extern uint16_t UPG_DESC1[NUM_UPGS], UPG_DESC2[NUM_UPGS], UPG_DESC3[NUM_UPGS];
+
 class Game
 {
 public:
