@@ -22,10 +22,10 @@ size_t cpy_bytes(const char *data, size_t size, char *out);
 size_t write_chunk(const char *tag, const char *data, uint8_t size, char *out);
 
 // copy a variable's byte represenation to an output
-#define cpy_bytes_from_var(var, out) cpy_bytes((char *)&(var), sizeof(var), out)
+#define CPY_BYTES_FROM_VAR(var, out) cpy_bytes((char *)&(var), sizeof(var), out)
 // copy some bytes from an input stream to a variable
-#define cpy_bytes_to_var(in, var) cpy_bytes(in, sizeof(var), (char *)&(var))
+#define CPY_BYTES_TO_VAR(in, var) cpy_bytes(in, sizeof(var), (char *)&(var))
 // write a variable as a chunk
-#define write_chunk_var(tag, var, out) write_chunk(tag, (char *)&(var), sizeof(var), out)
+#define WRITE_CHUNK(tag, var, out) write_chunk(tag, (char *)&(var), sizeof(var), out)
 
 #endif // COOKIE_FILES_H

@@ -2,7 +2,7 @@
 # toolchain file and module path of the fxSDK
 
 cmake_minimum_required(VERSION 3.15)
-project(Cookie VERSION 0.0.1)
+project(Cookie VERSION 0.0.2)
 
 include(GenerateG1A)
 include(Fxconv)
@@ -20,6 +20,8 @@ set(SOURCES
   src/util.cpp
   src/list.h
   src/list.cpp
+  src/rarray.h
+  src/rarray.cpp
   src/files.h
   src/files.cpp
 )

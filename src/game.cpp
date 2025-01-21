@@ -1,6 +1,7 @@
 #include "game.h"
 #include "util.h"
 #include "list.h"
+#include "rarray.h"
 #include "files.h"
 #include <stddef.h>
 #include <stdio.h>
@@ -8,7 +9,7 @@
 #include <gint/display.h>
 #include <gint/keyboard.h>
 
-Game::Game() : upg_unlocked_list(), autosave_interval(600), click_cookies(1), unlocked_buildings(2)
+Game::Game() : upg_unlocked_list(), click_cookies(1), autosave_interval(600), unlocked_buildings(2)
 {
   for (int i = 0; i < NUM_BUILDS; ++i)
   {
@@ -24,48 +25,59 @@ Game::Game() : upg_unlocked_list(), autosave_interval(600), click_cookies(1), un
 
 bool Game::save_game()
 {
-  char buf[FILE_BUF_SIZE];
-  char *cur = buf; // output progress
+  rarray<char> buf(DEFAULT_FILE_BUF_SIZE);
+
+  auto cur = buf.get_ptr(0); // output progress
 
   // file format: https://docs.google.com/spreadsheets/d/1XEMjNKJkmM5mCc2lz7IlXEv5vYw1xzqRuGZv8csOpEI/edit?usp=sharing
   // note: we're using big-endian
 
+  // the reason for the "cur + n" statements around the place is to enxure that there is enough memory for the write
+  // operations. adding n creates a new ptr n bytes after cur. if this new ptr is out of bounds, the rarray will
+  // automatically resize, which ensures that the following write operation will not do anything sketchy
+
   /* write signature */
+  cur + 16;
   cur += sprintf(cur, "COOKIEv%s", COOKIE_VERSION);
-  for (; cur - buf < 16; ++cur)
+  for (; cur.index() < 16; ++cur)
     *cur = '\0';
 
   /* game data */
   // leave 2 bytes to write size later
-  char *gdata_start = cur;
+  auto gdata_start(cur);
   cur += 2;
-  cur += write_chunk_var("nCKS", cookies, cur);            // current number of cookies
-  cur += write_chunk_var("CKat", cookies_all, cur);        // all-time num. cookies made
-  cur += write_chunk_var("TICK", ticks, cur);              // ticks since game start
-  cur += write_chunk_var("CLKS", cookie_clicks, cur);      // number of times cookie has been clicked
-  cur += write_chunk_var("cCLK", cookies_from_click, cur); // cookies we made by clicking
-  cur += write_chunk_var("nwUP", new_upgs, cur);           // whether there are new upgrades available
+
+// ensures that there is enough space first before writing a chunk
+#define GS_WRITE_CHUNK(tag, var) \
+  cur + (5 + sizeof(var));       \
+  cur += WRITE_CHUNK(tag, var, cur)
+
+  GS_WRITE_CHUNK("nCKS", cookies);            // current number of cookies
+  GS_WRITE_CHUNK("CKat", cookies_all);        // all-time num. cookies made
+  GS_WRITE_CHUNK("TICK", ticks);              // ticks since game start
+  GS_WRITE_CHUNK("CLKS", cookie_clicks);      // number of times cookie has been clicked
+  GS_WRITE_CHUNK("cCLK", cookies_from_click); // cookies we made by clicking
+  GS_WRITE_CHUNK("nwUP", new_upgs);           // whether there are new upgrades available
 
   // write game data block size
   uint16_t gdata_size = cur - gdata_start;
-  cpy_bytes_from_var(gdata_size, gdata_start);
+  CPY_BYTES_FROM_VAR(gdata_size, gdata_start);
 
   /* options */
-  // TODO: ignore this for now
-  memcpy(cur, "\x00\x02", 2); // options block: 2 bytes (refers to itself)
+  auto optn_start(cur);
   cur += 2;
+  // nothing here for now...
+  uint16_t optn_bytes = cur - optn_start;
+  CPY_BYTES_FROM_VAR(optn_bytes, optn_start);
 
   /* building data */
-  size_t bld_qty_size = sizeof(buildings->qty); // should be 2
+  cur + (sizeof(buildings->qty) * NUM_BUILDS);
   for (int i = 0; i < NUM_BUILDS; ++i)
-  {
-    cpy_bytes((char *)&buildings[i].qty, bld_qty_size, cur);
-    cur += bld_qty_size;
-  }
+    cur += CPY_BYTES_FROM_VAR(buildings[i].qty, cur);
 
   /* upgrade data */
   // bought updates bitset
-  char *upg_bought_start = cur++; // leave one byte for bitset size
+  auto upg_bought_start(cur++); // leave one byte for bitset size
   *upg_bought_start = 0;
   for (int i = 0; i < NUM_UPGS; i += 8)
   {
@@ -78,25 +90,28 @@ bool Game::save_game()
   }
   // unlocked upgrades list
   uint16_t upg_unlocked_n = upg_unlocked_list.size();
-  cur += cpy_bytes_from_var(upg_unlocked_n, cur);
+  cur + (2 * (upg_unlocked_n + 1));
+  cur += CPY_BYTES_FROM_VAR(upg_unlocked_n, cur);
   for (auto it = upg_unlocked_list.begin(); it != upg_unlocked_list.end(); ++it)
   {
     uint16_t upg_id = *it;
-    cur += cpy_bytes_from_var(upg_id, cur);
+    cur += CPY_BYTES_FROM_VAR(upg_id, cur);
   }
 
   // write to file
   FILE *fp = fopen(SAVE_LOC, "wb");
   if (!fp)
     return false;
-  fwrite(buf, sizeof(*buf), cur - buf, fp);
+  fwrite(buf.data(), sizeof(*buf), cur.index(), fp);
+  if (ferror(fp))
+    return false;
   fclose(fp);
   return true;
 }
 
 bool Game::load_game()
 {
-  char buf[FILE_BUF_SIZE];
+  rarray<char> buf(DEFAULT_FILE_BUF_SIZE);
 
   FILE *fp = fopen(SAVE_LOC, "rb");
 
@@ -104,14 +119,16 @@ bool Game::load_game()
   if (!fp)
     return false;
 
-  size_t size = fread(buf, sizeof(*buf), FILE_BUF_SIZE, fp);
-
-  if (size == FILE_BUF_SIZE) // oh shit, our buffer is too small
-    return false;
+  auto cur = buf.get_ptr(0);
+  while ((cur += fread((char *)cur, sizeof(*cur), buf.size() - cur.index(), fp)) && !feof(fp))
+  {
+    if (ferror(fp))
+      return false;
+  }
 
   fclose(fp);
 
-  char *cur = buf + 16; // skip header
+  cur = buf.get_ptr(16); // skip header
 
   /* game data */
   // reset game data
@@ -121,40 +138,40 @@ bool Game::load_game()
   cookie_clicks = 0;
   new_upgs = 0;
   // get gdata block size
-  char *gdata_start = cur;
+  auto gdata_start(cur);
   uint16_t gdata_bytes;
-  cur += cpy_bytes_to_var(cur, gdata_bytes);
+  cur += CPY_BYTES_TO_VAR(cur, gdata_bytes);
   // read game data chunks
   while (cur - gdata_start < gdata_bytes)
   {
     if (!memcmp(cur, "nCKS", 4)) // number of cookies
-      cpy_bytes_to_var(cur + 5, cookies);
+      CPY_BYTES_TO_VAR(cur + 5, cookies);
     else if (!memcmp(cur, "CKat", 4)) // number of cookies (all time)
-      cpy_bytes_to_var(cur + 5, cookies_all);
+      CPY_BYTES_TO_VAR(cur + 5, cookies_all);
     else if (!memcmp(cur, "TICK", 4)) // ticks elapsed
-      cpy_bytes_to_var(cur + 5, ticks);
+      CPY_BYTES_TO_VAR(cur + 5, ticks);
     else if (!memcmp(cur, "CLKS", 4)) // number of times cookie has been clicked
-      cpy_bytes_to_var(cur + 5, cookie_clicks);
+      CPY_BYTES_TO_VAR(cur + 5, cookie_clicks);
     else if (!memcmp(cur, "cCLK", 4)) // cookies made from clicking
-      cpy_bytes_to_var(cur + 5, cookies_from_click);
+      CPY_BYTES_TO_VAR(cur + 5, cookies_from_click);
     else if (!memcmp(cur, "nwUP", 4)) // whether there are new upgrades available
-      cpy_bytes_to_var(cur + 5, new_upgs);
+      CPY_BYTES_TO_VAR(cur + 5, new_upgs);
 
     // advance to next chunk
     uint8_t data_size;
-    cpy_bytes_to_var(cur + 4, data_size);
+    CPY_BYTES_TO_VAR(cur + 4, data_size);
     cur += 5 + data_size;
   }
 
   /* options */
-  char *optn_start = cur;
+  auto optn_start(cur);
   uint16_t optn_bytes;
-  cur += cpy_bytes_to_var(cur, optn_bytes);
+  cur += CPY_BYTES_TO_VAR(cur, optn_bytes);
   // TODO: do something with this
 
   /* buildings */
   for (int i = 0; i < NUM_BUILDS; ++i)
-    cur += cpy_bytes_to_var(cur, buildings[i].qty);
+    cur += CPY_BYTES_TO_VAR(cur, buildings[i].qty);
 
   /* upgrades */
   // clear previous upgrade info
@@ -163,12 +180,12 @@ bool Game::load_game()
   upg_unlocked_list.clear();
   // bought upgrades bitset
   uint8_t upg_bought_size;
-  cur += cpy_bytes_to_var(cur, upg_bought_size);
+  cur += CPY_BYTES_TO_VAR(cur, upg_bought_size);
   for (int i = 0; i < 8 * upg_bought_size && i < NUM_UPGS; i += 8)
   {
     // group of 8 upgrades
     char upgs8;
-    cur += cpy_bytes_to_var(cur, upgs8);
+    cur += CPY_BYTES_TO_VAR(cur, upgs8);
     for (int j = 0; j < 8; ++j)
     {
       if (i + j < NUM_UPGS)
@@ -177,11 +194,11 @@ bool Game::load_game()
   }
   // unlocked upgrades list
   uint16_t upg_unlocked_n;
-  cur += cpy_bytes_to_var(cur, upg_unlocked_n);
+  cur += CPY_BYTES_TO_VAR(cur, upg_unlocked_n);
   for (int i = 0; i < upg_unlocked_n; ++i)
   {
     uint16_t upg_id;
-    cur += cpy_bytes_to_var(cur, upg_id);
+    cur += CPY_BYTES_TO_VAR(cur, upg_id);
     upg_unlocked[upg_id] = 1;
     upg_unlocked_list.push_back(upg_id);
   }

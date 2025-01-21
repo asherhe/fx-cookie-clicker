@@ -16,8 +16,8 @@ const double TICK = 0.100;
 /* location of savefiles */
 const char SAVE_LOC[] = "SAVE.CLK";
 
-/* size of file buffer for reading/writing, 4kB should be enough */
-const int FILE_BUF_SIZE = 4096;
+/* size of file buffer for reading/writing. usually, file should be less than 256B */
+const int DEFAULT_FILE_BUF_SIZE = 256;
 
 /* number of tabs we have */
 const int NUM_TABS = 5;
@@ -40,13 +40,6 @@ const struct dwindow BUILDINGS_WINDOW = {46, 19, 124, 55};
 class Game
 {
 public:
-  /* number of cookies we currently have */
-  double cookies;
-  /* total number of cookies we have ever baked */
-  double cookies_all;
-  /* cookies baked by buildings per second */
-  double cps;
-
   /* data about all the building types */
   Building buildings[NUM_BUILDS];
   /* how many buildings do we have? */
@@ -58,9 +51,6 @@ public:
   bool upg_unlocked[NUM_UPGS];
   /* a list, in order of when they were added, of all unlocked upgrades */
   list<int> upg_unlocked_list;
-
-  /* time (in ticks) in between autosaves */
-  unsigned autosave_interval;
 
   /*
    * makes a new game
@@ -134,37 +124,47 @@ public:
   void render();
 
 private:
-  // ticks elapsed since game open (used for animations)
-  unsigned ticks;
-  // time till next autosave
-  unsigned autosave_timer;
-  // number of cookies we get when we click the cookie
+  /* number of cookies we currently have */
+  double cookies;
+  /* cookies baked by buildings per second */
+  double cps;
+
+  /* total number of cookies we have ever baked */
+  double cookies_all;
+  /* number of cookies we get when we click the cookie */
   double click_cookies;
-  // number of times the big cookie has been clicked
+  /* number of times the big cookie has been clicked */
   unsigned cookie_clicks;
-  // cookies we got from clicking
+  /* cookies we got from clicking */
   double cookies_from_click;
+
+  /* ticks elapsed since game open (used for animations) */
+  unsigned ticks;
+  /* time (in ticks) in between autosaves */
+  unsigned autosave_interval;
+  /* time till next autosave */
+  unsigned autosave_timer;
 
   /* ui state */
 
-  SidebarTab sidebar_tab; // active sidebar tab
-  int tab_scroll;         // id of the leftmost tab to display
+  SidebarTab sidebar_tab; /* active sidebar tab */
+  int tab_scroll;         /* id of the leftmost tab to display */
 
-  int sidebar_sel;               // currently selected item in sidebar. range is limited to [0, sidebar_sel_n)
-  int sidebar_sel_n;             // number of selectable options
-  struct dwindow sidebar_window; // dwindow that covers the rendering region for the sidebar items
-  int sidebar_item_height;       // vertical displacement between each item in the sidebar
-  int sidebar_item_maxy;         // maximum y-position the base of each sidebar item can be to remain onscreen
-  int sidebar_dy;                // visual scroll offset
+  int sidebar_sel;               /* currently selected item in sidebar. range is limited to [0, sidebar_sel_n) */
+  int sidebar_sel_n;             /* number of selectable options */
+  struct dwindow sidebar_window; /* dwindow that covers the rendering region for the sidebar items */
+  int sidebar_item_height;       /* vertical displacement between each item in the sidebar */
+  int sidebar_item_maxy;         /* maximum y-position the base of each sidebar item can be to remain onscreen */
+  int sidebar_dy;                /* visual scroll offset */
 
-  int unlocked_buildings; // number of buildings visible in the UI
-  bool new_upgs;          // shows unread badge on upgrade tab if new upgrades are available
+  int unlocked_buildings; /* number of buildings visible in the UI */
+  bool new_upgs;          /* shows unread badge on upgrade tab if new upgrades are available */
 
   enum
   {
-    MSG_NONE,     // no message box
-    MSG_UPG_INFO, // shows information about the currently selected upgrade
-  } message_type; // the state of the message box display
+    MSG_NONE,     /* no message box */
+    MSG_UPG_INFO, /* shows information about the currently selected upgrade */
+  } message_type; /* the state of the message box display */
 
   /* recalculate current cps */
   void calc_cps();
