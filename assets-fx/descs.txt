@@ -1,6 +1,6 @@
 
 "Autoclicks once every
-"10 seconds""
+10 seconds"
 "A nice grandma to
 bake more cookies"
 "Grows cookie plants
@@ -90,3 +90,23 @@ Javascript Consoles are
 Idleverses are TWICE
 Cortex Bakers are TWICE
 You are TWICE
+Grandmas are TWICE as
+efficient. Farms
+gain +1% CpS / Grandma
+efficient. Mines
+efficient. Factories
+efficient. Banks gain
+efficient. Temples gain
+efficient. Wizard Towers
+efficient. Shipments
+efficient. Alchemy Labs
+efficient. Portals gain
+efficient. Time Machines
+efficient. Antimater Cs.
+efficient. Prims gain
+efficient. Chancemakers
+efficient. Fractl Engins
+efficient. JS Consoles
+efficient. Idleverses
+efficient. Cortex Bakers
+efficient. You

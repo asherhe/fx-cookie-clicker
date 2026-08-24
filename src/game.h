@@ -44,7 +44,7 @@ extern char DESCS[NUM_DESCS][25];
 /* UPGRADE DATA */
 
 /* number of upgrades available */
-const int NUM_UPGS = 195;
+const int NUM_UPGS = 318;
 /* name of each upgrade */
 extern char UPG_NAME[NUM_UPGS][21];
 /* cost to purchase each upgrade */
@@ -53,8 +53,8 @@ extern double UPG_PRICE[NUM_UPGS];
 extern BuildType UPG_BUILDING[NUM_UPGS];
 /* the number of the associated building that we need to unlock this upgrade */
 extern int16_t UPG_BUILD_REQ[NUM_UPGS];
-/* three lines of description for the upgrade's info box, points to DESC */
-extern uint16_t UPG_DESC1[NUM_UPGS], UPG_DESC2[NUM_UPGS], UPG_DESC3[NUM_UPGS];
+/* three lines of description for the upgrade's info box, points to indices in DESC */
+extern uint16_t UPG_DESC[NUM_UPGS][3];
 
 class Game
 {
@@ -160,9 +160,13 @@ private:
   /* ticks elapsed since game open (used for animations) */
   unsigned ticks;
   /* time (in ticks) in between autosaves */
-  unsigned autosave_interval;
-  /* time till next autosave */
-  unsigned autosave_timer;
+  unsigned autosave_time;
+  /* timestamp of the next autosave */
+  unsigned next_autosave;
+  /* idle time (without keypresses) before we auto power-off */
+  unsigned poweroff_time;
+  /* timestamp of the automatic poweroff */
+  unsigned next_poweroff;
 
   /* ui state */
 
@@ -181,9 +185,10 @@ private:
 
   enum
   {
-    MSG_NONE,     /* no message box */
-    MSG_UPG_INFO, /* shows information about the currently selected upgrade */
-  } message_type; /* the state of the message box display */
+    MSG_NONE,      /* no message box */
+    MSG_BUILD_IFO, /* shows information about the currently selected building */
+    MSG_UPG_INFO,  /* shows information about the currently selected upgrade */
+  } message_type;  /* the state of the message box display */
 
   /* recalculate current cps */
   void calc_cps();

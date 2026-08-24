@@ -6,10 +6,11 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+#include <gint/gint.h>
 #include <gint/display.h>
 #include <gint/keyboard.h>
 
-Game::Game() : upg_unlocked_list(), click_cookies(1), autosave_interval(600), unlocked_buildings(2)
+Game::Game() : upg_unlocked_list(), click_cookies(1), autosave_time(60 / TICK), poweroff_time(600 / TICK), unlocked_buildings(2)
 {
   for (int i = 0; i < NUM_BUILDS; ++i)
   {
@@ -18,7 +19,8 @@ Game::Game() : upg_unlocked_list(), click_cookies(1), autosave_interval(600), un
 
   load_game();
 
-  autosave_timer = autosave_interval;
+  next_autosave = ticks + autosave_time;
+  next_poweroff = ticks + poweroff_time;
 
   switch_tab(TAB_BUILDINGS);
 }
@@ -362,6 +364,8 @@ void Game::unlock_upgrade(int u)
 
 void Game::key_pressed(key_event_t k)
 {
+  next_poweroff = ticks + poweroff_time;
+
   if (message_type == MSG_NONE)
   {
     switch (k.key)
@@ -412,18 +416,47 @@ void Game::key_pressed(key_event_t k)
       }
       break;
     case KEY_MINUS:
-      if (sidebar_tab == TAB_UPGRADES)
-        message_type = MSG_UPG_INFO;
+      switch (sidebar_tab)
+      {
+      case TAB_BUILDINGS:
+        if (sidebar_sel < unlocked_buildings - 2)
+          message_type = MSG_BUILD_IFO;
+        break;
+      case TAB_UPGRADES:
+        if (sidebar_sel_n > 0)
+          message_type = MSG_UPG_INFO;
+        break;
+      default:
+        break;
+      }
       break;
-
     default:
       break;
     }
   }
   else
   {
-    if (k.key == KEY_EXIT)
+    switch (k.key)
+    {
+    case KEY_EXIT:
       message_type = MSG_NONE;
+      break;
+    case KEY_EXE:
+      switch (sidebar_tab)
+      {
+      case TAB_BUILDINGS:
+        buy_building((BuildType)sidebar_sel);
+        break;
+      case TAB_UPGRADES:
+        buy_upgrade(upg_unlocked_list.at(sidebar_sel));
+        break;
+      default:
+        break;
+      }
+      break;
+    default:
+      break;
+    }
   }
 }
 
@@ -433,10 +466,15 @@ void Game::tick()
 
   *this += cps * TICK;
 
-  if (--autosave_timer <= 0)
+  if (ticks >= next_autosave)
   {
-    autosave_timer = autosave_interval;
+    next_autosave = ticks + autosave_time;
     save_game();
+  }
+  if (ticks >= next_poweroff)
+  {
+    next_poweroff = ticks + poweroff_time;
+    gint_poweroff(true);
   }
 }
 
@@ -560,7 +598,7 @@ void Game::render_tab_buildings()
     // dashed line
     dtext(47, draw_y, C_BLACK, "~~~~~~~~~~~~~~~~~~");
     // building name
-    dtext_opt(47, draw_y, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, (i < unlocked_buildings - 2) ? buildings[i].name : "???");
+    dtext_opt(47, draw_y, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, (i < unlocked_buildings - 2) ? BUILD_NAMES[i] : "???");
     if (i == sidebar_sel && cookies >= buildings[i].price)
     {
       // buy button
@@ -584,7 +622,7 @@ void Game::render_tab_buildings()
 
   // selected building info
   dimage(45, 9, &img_info_bar);
-  dtext(47, 11, C_BLACK, (sidebar_sel < unlocked_buildings - 2) ? buildings[sidebar_sel].name : "???");
+  dtext(47, 11, C_BLACK, (sidebar_sel < unlocked_buildings - 2) ? BUILD_NAMES[sidebar_sel] : "???");
   dprint(71, 11, C_BLACK, "*%d", buildings[sidebar_sel].qty);
   dtext_opt(109, 11, C_BLACK, C_NONE, DTEXT_RIGHT, DTEXT_TOP,
             (sidebar_sel < unlocked_buildings - 2)
@@ -677,7 +715,7 @@ void Game::render_tab_stats()
   m = (time_played /= 60) % 60;
   h = time_played / 60;
   dprint(47, (print_y += sidebar_item_height), C_BLACK, "Time played:%d:%02d:%02d", h, m, s);
-  dprint(47, (print_y += sidebar_item_height), C_BLACK, "Next autosave:%ds", (int)(autosave_timer * TICK));
+  dprint(47, (print_y += sidebar_item_height), C_BLACK, "Next autosave:%ds", (int)((next_autosave - ticks) * TICK));
 
   dimage(47, (print_y += sidebar_item_height), &img_cookie);
   dprint(53, print_y, C_BLACK, "/click:%s", num_to_str(click_cookies, buf));                // how many cookies we get each time we click the big cookie
@@ -690,7 +728,7 @@ void Game::render_tab_stats()
   for (int i = 0; i < NUM_BUILDS; ++i)
   {
     dtext(51, (print_y += sidebar_item_height), C_BLACK, "~~~~~~~~~~~~~~~~~~~");
-    dtext_opt(51, print_y, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, buildings[i].name);
+    dtext_opt(51, print_y, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, BUILD_NAMES[i]);
     dprint_opt(75, print_y, C_BLACK, C_WHITE, DTEXT_LEFT, DTEXT_TOP, "*%d", buildings[i].qty);
     dtext_opt(125, print_y, C_BLACK, C_WHITE, DTEXT_RIGHT, DTEXT_TOP, num_to_str(buildings[i].qty * buildings[i].cps, buf));
   }
@@ -703,25 +741,59 @@ void Game::render_tab_stats()
 
 void Game::render_message_box()
 {
+  extern bopti_image_t img_cookie; // inline cookie unit
+
+  char buf[25];
+
   // message box base
   drect(15, 59, 117, 11, C_BLACK);                   // shadow
   drect_border(12, 6, 115, 57, C_WHITE, 1, C_BLACK); // outer border
   drect_border(14, 8, 113, 55, C_WHITE, 1, C_BLACK); // inner border
 
-  int sel_id;
+  int sel_id, base_x;
   switch (message_type)
   {
+  case MSG_BUILD_IFO:
+    // window title
+    dtext_opt(63, 10, C_BLACK, C_WHITE, DTEXT_CENTER, DTEXT_TOP, "==BUILD INFO==");
+    dline(15, 16, 112, 16, C_BLACK);
+
+    dprint(16, 18, C_BLACK, "%s*%d", BUILD_NAMES[sidebar_sel], buildings[sidebar_sel].qty); // build name
+
+    // draw price, cps
+    dtext(16, 24, C_BLACK, num_to_str(buildings[sidebar_sel].price, buf));
+    base_x = 4 * strlen(buf);
+    dimage(16 + base_x, 24, &img_cookie);
+    dtext(26 + base_x, 24, C_BLACK, "|");
+    dtext(34 + base_x, 24, C_BLACK, num_to_str(buildings[sidebar_sel].cps, buf));
+    dimage(34 + base_x + 4 * strlen(buf), 24, &img_cookie);
+    dtext(40 + base_x + 4 * strlen(buf), 24, C_BLACK, "/s");
+
+    // description lines
+    for (int i = 0; i < 3; ++i)
+      dtext(16, 30 + i * 6, C_BLACK, DESCS[BUILD_DESC[sidebar_sel][i]]);
+
+    if (cookies >= buildings[sidebar_sel].price && ticks & 0b1000)
+      dtext(17, 49, C_BLACK, "[EXE]BUY");
+    break;
+
   case MSG_UPG_INFO:
     sel_id = upg_unlocked_list.at(sidebar_sel);
 
     // window title
-    dtext(40, 10, C_BLACK, "==UPG INFO==");
+    dtext_opt(63, 10, C_BLACK, C_WHITE, DTEXT_CENTER, DTEXT_TOP, "==UPG INFO==");
     dline(15, 16, 112, 16, C_BLACK);
 
-    dtext(16, 18, C_BLACK, UPG_NAME[sel_id]);         // upgrade name
-    dtext(16, 27, C_BLACK, DESCS[UPG_DESC1[sel_id]]); // description line 1
-    dtext(16, 33, C_BLACK, DESCS[UPG_DESC2[sel_id]]); // description line 2
-    dtext(16, 39, C_BLACK, DESCS[UPG_DESC3[sel_id]]); // description line 3
+    dtext(16, 18, C_BLACK, UPG_NAME[sel_id]);                               // upgrade name
+    dprint(16, 24, C_BLACK, "Cost:%s", num_to_str(UPG_PRICE[sel_id], buf)); // upgrade price
+    dimage(36 + 4 * strlen(buf), 24, &img_cookie);
+
+    // description lines
+    for (int i = 0; i < 3; ++i)
+      dtext(16, 30 + i * 6, C_BLACK, DESCS[UPG_DESC[sel_id][i]]);
+
+    if (cookies >= UPG_PRICE[sel_id] && ticks & 0b1000)
+      dtext(17, 49, C_BLACK, "[EXE]BUY");
     break;
 
   default:
@@ -729,5 +801,5 @@ void Game::render_message_box()
   }
 
   // exit button
-  dtext(89, 47, C_BLACK, "[EXIT]");
+  dtext(89, 49, C_BLACK, "[EXIT]");
 }

@@ -1,301 +1,319 @@
-name,                    price,  build, build-req, desc1, desc2, desc3
-"REINFORCD INDX FINGR",  100,    0,     1,         62,    63,    0
-"CARPAL TNNEL PRVENTN",  500,    0,     1,         62,    63,    0
-"AMBIDEXTROUS",           10e3,  0,     10,        62,    63,    0
-"THOUSAND FINGERS",      100e3,  0,     25,        64,    65,    66
-"MILLION FINGERS",        10e6,  0,     50,        67,    68,    0
-"BILLION FINGERS",       100e6,  0,     100,       67,    69,    0
-"TRILLION FINGERS",        1e9,  0,     150,       67,    70,    0
-"QUADRILLION FINGERS",    10e9,  0,     200,       67,    70,    0
-"QUINTILLION FINGERS",    10e12, 0,     250,       67,    70,    0
-"SEXTILLION FINGERS",     10e15, 0,     300,       67,    70,    0
-"SEPTILLION FINGERS",     10e18, 0,     350,       67,    70,    0
-"OCTILLION FINGERS",      10e21, 0,     400,       67,    70,    0
-"NONILLION FINGERS",      10e24, 0,     450,       67,    70,    0
-"DECILLION FINGERS",      10e27, 0,     500,       67,    70,    0
-"UNDECILLION FINGERS",    10e30, 0,     550,       67,    70,    0
-"FWDS FROM GRANDMA",       1e3,  1,     1,         71,    63,    0
-"STEEL ROLLING PINS",      5e3,  1,     5,         71,    63,    0
-"LUBRICATED DENTURES",    50e3,  1,     25,        71,    63,    0
-"PRUNE JUICE",             5e6,  1,     50,        71,    63,    0
-"DOUBLE-THICK GLASSES",  500e6,  1,     100,       71,    63,    0
-"AGING AGENTS",           50e9,  1,     150,       71,    63,    0
-"XTREME WALKERS",         50e12, 1,     200,       71,    63,    0
-"THE UNBRIDLING",         50e15, 1,     250,       71,    63,    0
-"REVERSE DEMENTIA",       50e18, 1,     300,       71,    63,    0
-"TIMEPROOF HAIR DYES",    50e21, 1,     350,       71,    63,    0
-"GOOD MANNERS",          500e24, 1,     400,       71,    63,    0
-"GENRATION DEGENRATON",    5e30, 1,     450,       71,    63,    0
-"VISITS",                 50e33, 1,     500,       71,    63,    0
-"KITCHEN CABINETS",      500e36, 1,     550,       71,    63,    0
-"FOAM-TIPPED CANES",       5e42, 1,     600,       71,    63,    0
-"CHEAP HOES",             11e3,  2,     1,         72,    63,    0
-"FERTILIZER",             55e3,  2,     5,         72,    63,    0
-"COOKIE TREES",          550e3,  2,     25,        72,    63,    0
-"GMO COOKIES",            55e6,  2,     50,        72,    63,    0
-"GINGRBRED SCARECROWS",  5.5e9,  2,     100,       72,    63,    0
-"PULSAR SPRINKLERS",     550e9,  2,     150,       72,    63,    0
-"FUDGE FUNGUS",          550e12, 2,     200,       72,    63,    0
-"WHEAT TRIFFIDS",        550e15, 2,     250,       72,    63,    0
-"HUMANE PESTICIDES",     550e18, 2,     300,       72,    63,    0
-"BARNSTARS",             550e21, 2,     350,       72,    63,    0
-"LINDWORMS",             5.5e27, 2,     400,       72,    63,    0
-"GLOBAL SEED VAULT",      55e30, 2,     450,       72,    63,    0
-"REVERSE-VEGANISM",      550e33, 2,     500,       72,    63,    0
-"COOKIE MULCH",          5.5e39, 2,     550,       72,    63,    0
-"SELF-DRIVING TRACTRS",   55e42, 2,     600,       72,    63,    0
-"SUGAR GAS",             120e3,  3,     1,         73,    63,    0
-"MEGADRILL",             600e3,  3,     5,         73,    63,    0
-"ULTRADRILL",              6e6,  3,     25,        73,    63,    0
-"ULTIMADRILL",           600e6,  3,     50,        73,    63,    0
-"H-BOMB MINING",          60e9,  3,     100,       73,    63,    0
-"COREFORGE",               6e12, 3,     150,       73,    63,    0
-"PLANETSPLITTERS",         6e15, 3,     200,       73,    63,    0
-"CANOLA OIL WELLS",        6e18, 3,     250,       73,    63,    0
-"MOLE PEOPLE",             6e21, 3,     300,       73,    63,    0
-"MINE CANARIES",           6e24, 3,     350,       73,    63,    0
-"BORE AGAIN",             60e27, 3,     400,       73,    63,    0
-"AIR MINING",            600e30, 3,     450,       73,    63,    0
-"CARAMEL ALLOYS",          6e33, 3,     500,       73,    63,    0
-"DELICIOUS MINERALOGY",   60e39, 3,     550,       73,    63,    0
-"MINESHAFT SUPPORTS",    600e42, 3,     600,       73,    63,    0
-"STRDIER CONVYOR BLTS",  1.3e6,  4,     1,         74,    63,    0
-"CHILD LABOR",           6.5e6,  4,     5,         74,    63,    0
-"SWEATSHOP",              65e6,  4,     25,        74,    63,    0
-"RADIUM REACTORS",       6.5e9,  4,     50,        74,    63,    0
-"RECOMBOBULATORS",       650e9,  4,     100,       74,    63,    0
-"DEEP-BAKE PROCESS",      65e12, 4,     150,       74,    63,    0
-"CYBORG WORKFORCE",       65e15, 4,     200,       74,    63,    0
-"78-HOUR DAYS",           65e18, 4,     250,       74,    63,    0
-"MACHINE LEARNING",       65e21, 4,     300,       74,    63,    0
-"BROWNIE POINT SYSTEM",   65e24, 4,     350,       74,    63,    0
-""VOLUNTEER" INTERNS",   650e27, 4,     400,       74,    63,    0
-"BEHAVIORAL REFRAMING",  6.5e33, 4,     450,       74,    63,    0
-"THE INFINITY ENGINE",    65e36, 4,     500,       74,    63,    0
-"N-DIM ASSMBLY LINES",   650e39, 4,     550,       74,    63,    0
-"UNIVERSAL AUTOMATION",  6.5e45, 4,     600,       74,    63,    0
-"TALLER TELLERS",         14e6,  5,     1,         75,    63,    0
-"SCSSR-RESISTNT CARDS",   70e6,  5,     5,         75,    63,    0
-"ACID-PROOF VAULTS",     700e6,  5,     25,        75,    63,    0
-"CHOCOLATE COINS",        70e9,  5,     50,        75,    63,    0
-"EXPNTL INTREST RATES",    7e12, 5,     100,       75,    63,    0
-"FINANCIAL ZEN",         700e12, 5,     150,       75,    63,    0
-"WAY OF THE WALLET",     700e15, 5,     200,       75,    63,    0
-"THE STUFF RATIONALE",   700e18, 5,     250,       75,    63,    0
-"EDIBLE MONEY",          700e21, 5,     300,       75,    63,    0
-"GRAND SUPERCYCLE",      700e24, 5,     350,       75,    63,    0
-"RULES OF ACQUISITION",    7e30, 5,     400,       75,    63,    0
-"ALTRUISTIC LOOP",        70e33, 5,     450,       75,    63,    0
-"DIMNSHING TAX RETRNS",  700e36, 5,     500,       75,    63,    0
-"COOKIE POINTS",           7e42, 5,     550,       75,    63,    0
-"THE BIG SHORTCAKE",      70e45, 5,     600,       75,    63,    0
-"GOLDEN IDOLS",          200e6,  6,     1,         76,    63,    0
-"SACRIFICES",              1e9,  6,     5,         76,    63,    0
-"DELICIOUS BLESSING",     10e9,  6,     25,        76,    63,    0
-"SUN FESTIVAL",            1e12, 6,     50,        76,    63,    0
-"ENLARGED PANTHEON",     100e12, 6,     100,       76,    63,    0
-"GREAT BAKER IN SKY",     10e15, 6,     150,       76,    63,    0
-"CREATION MYTH",          10e18, 6,     200,       76,    63,    0
-"THEOCRACY",              10e21, 6,     250,       76,    63,    0
-"SICK RAP PRAYERS",       10e24, 6,     300,       76,    63,    0
-"PSALM-READING",          10e27, 6,     350,       76,    63,    0
-"WAR OF THE GODS",       100e30, 6,     400,       76,    63,    0
-"A NOVEL IDEA",            1e36, 6,     450,       76,    63,    0
-"APPARITIONS",            10e39, 6,     500,       76,    63,    0
-"NEGATHEISM",            100e42, 6,     550,       76,    63,    0
-"TEMPLE TRAPS",            1e48, 6,     600,       76,    63,    0
-"POINTIER HATS",         3.3e9,  7,     1,         77,    63,    0
-"BEARDLIER BEARDS",     16.5e9,  7,     5,         77,    63,    0
-"ANCIENT GRIMOIRES",     165e9,  7,     25,        77,    63,    0
-"KITCHEN CURSES",       16.5e12, 7,     50,        77,    63,    0
-"SCHOOL OF SORCERY",     165e15, 7,     100,       77,    63,    0
-"DARK FORMULAS",         165e15, 7,     150,       77,    63,    0
-"COOKIEMANCY",           165e18, 7,     200,       77,    63,    0
-"RABBIT TRICK",          165e18, 7,     250,       77,    63,    0
-"DELUXE TAILORD WANDS",  165e21, 7,     300,       77,    63,    0
-"IMMOBLE SPELLCASTING",  165e27, 7,     350,       77,    63,    0
-"ELECTRICITY",          1.65e33, 7,     400,       77,    63,    0
-"SPELLING BEES",        16.5e36, 7,     450,       77,    63,    0
-"WIZARD BASEMENTS",      165e39, 7,     500,       77,    63,    0
-"MAGICAL REALISM",      1.65e45, 7,     550,       77,    63,    0
-"POLYMORPHISM",         16.5e48, 7,     600,       77,    63,    0
-"VANILLA NEBULAE",        51e9,  8,     1,         78,    63,    0
-"WORMHOLES",             255e9,  8,     5,         78,    63,    0
-"FREQUENT FLYER",       2.55e12, 8,     25,        78,    63,    0
-"WARP DRIVE",            255e12, 8,     50,        78,    63,    0
-"CHOCOLATE MONOLITHS",  25.5e15, 8,     100,       78,    63,    0
-"GENERATION SHIP",      2.55e18, 8,     150,       78,    63,    0
-"DYSON SPHERE",         2.55e21, 8,     200,       78,    63,    0
-"THE FINAL FRONTIER",   2.55e24, 8,     250,       78,    63,    0
-"AUTOPILOT",            2.55e27, 8,     300,       78,    63,    0
-"RSTRUNTS AT UNIVRSE",  2.55e30, 8,     350,       78,    63,    0
-"UNIVERSAL ALPHABET",   25.5e33, 8,     400,       78,    63,    0
-"TOROID UNIVERSE",       255e36, 8,     450,       78,    63,    0
-"PRIME DIRECTIVE",      2.55e39, 8,     500,       78,    63,    0
-"COSIC FG RADIATION",   25.5e45, 8,     550,       78,    63,    0
-"30 MINS OR $ BACK",     255e48, 8,     600,       78,    63,    0
-"ANTIMONY",              750e9,  9,     1,         79,    63,    0
-"ESSENCE OF DOUGH",     3.75e12, 9,     5,         79,    63,    0
-"TRUE CHOCOLATE",       37.5e12, 9,     25,        79,    63,    0
-"AMBROSIA",             3.75e15, 9,     50,        79,    63,    0
-"AQUA CRUSTULAE",        375e15, 9,     100,       79,    63,    0
-"ORIGIN CRUCIBLE",      37.5e18, 9,     150,       79,    63,    0
-"ATMIC FLUIDTY THEORY", 37.5e21, 9,     200,       79,    63,    0
-"BEIGE GOO",            37.5e24, 9,     250,       79,    63,    0
-"ADVENT OF CHEMISTRY",  37.5e27, 9,     300,       79,    63,    0
-"ON SECOND THOUGHT",    37.5e30, 9,     350,       79,    63,    0
-"PUBLIC BETTERMENT",     375e33, 9,     400,       79,    63,    0
-"HERMETC RECNCLIATION", 3.75e39, 9,     450,       79,    63,    0
-"CHROMATIC CYCLING",    37.5e42, 9,     500,       79,    63,    0
-"ARCANIZED GLASSWARE",   375e45, 9,     550,       79,    63,    0
-"DOSE MAKES THE POISN", 37.5e51, 9,     600,       79,    63,    0
-"ANCIENT TABLET",         10e12, 10,    1,         80,    63,    0
-"INSANE OATLING WRKRS",   50e12, 10,    5,         80,    63,    0
-"SOUL BOND",             500e12, 10,    25,        80,    63,    0
-"SANITY DANCE",           50e15, 10,    50,        80,    63,    0
-"BRANE TRANSPLANT",        5e18, 10,    100,       80,    63,    0
-"DEITY-SIZED PORTALS",   500e18, 10,    150,       80,    63,    0
-"END TIMES BCKUP PLAN",  500e21, 10,    200,       80,    63,    0
-"MADDENING CHANTS",      500e24, 10,    250,       80,    63,    0
-"THE REAL WORLD",        500e27, 10,    300,       80,    63,    0
-"DMNSNL GARBAGE GULPR",  500e30, 10,    350,       80,    63,    0
-"EMBEDDED MICROPORTLS",    5e36, 10,    400,       80,    63,    0
-"HIS ADVENT",             50e39, 10,    450,       80,    63,    0
-"DOMESTIC RIFTS",        500e42, 10,    500,       80,    63,    0
-"PORTAL GUNS",             5e48, 10,    550,       80,    63,    0
-"A WAY HOME",             50e51, 10,    600,       80,    63,    0
-"FLUX CAPACITORS",       140e12, 11,    1,         81,    63,    0
-"TIME PARADOX RESOLVR",  700e12, 11,    5,         81,    63,    0
-"QUANTUM CONUNDRUM",       7e15, 11,    25,        81,    63,    0
-"CAUSALITY ENFORCER",    700e15, 11,    50,        81,    63,    0
-"YESTRMORRW COMPRATRS",   70e18, 11,    100,       81,    63,    0
-"FAR FUTURE ENACTMENT",    7e21, 11,    150,       81,    63,    0
-"GREAT LOOP HYPOTHSIS",    7e24, 11,    200,       81,    63,    0
-"MOMENTS OF MAYBE",        7e27, 11,    250,       81,    63,    0
-"SECOND SECONDS",          7e30, 11,    300,       81,    63,    0
-"MORE CLOCK HANDS",        7e33, 11,    350,       81,    63,    0
-"NOSTALGIA",              70e36, 11,    400,       81,    63,    0
-"SPLIT SECONDS",         700e39, 11,    450,       81,    63,    0
-"PATIENCE ABOLISHED",     70e42, 11,    500,       81,    63,    0
-"TIMEPROOF UPHOLSTERY",   70e48, 11,    550,       81,    63,    0
-"RECTIFYING A MISTAKE",  700e51, 11,    600,       81,    63,    0
-"SUGAR BOSONS",          1.7e15, 12,    1,         82,    83,    0
-"STRING THEORY",         8.5e15, 12,    5,         82,    83,    0
-"LARGE MACARON COLLIDER", 85e15, 12,    25,        82,    83,    0
-"BIG BANG BAKE",         8.5e18, 12,    50,        82,    83,    0
-"REVERSE CYCLOTRONS",    850e18, 12,    100,       82,    83,    0
-"NANOCOSMICS",            85e21, 12,    150,       82,    83,    0
-"THE PULSE",              85e24, 12,    200,       82,    83,    0
-"SOME TINY PARTICLE",     85e27, 12,    250,       82,    83,    0
-"QUANTUM COMB",           85e30, 12,    300,       82,    83,    0
-"BAKING NOBEL PRIZE",     85e33, 12,    350,       82,    83,    0
-"THE DEFNITE MOLECULE",  850e36, 12,    400,       82,    83,    0
-"FLAVOR ITSELF",         8.5e42, 12,    450,       82,    83,    0
-"DELICIOUS PULL",         85e45, 12,    500,       82,    83,    0
-"EMPLOYEE MINIFCATION",  850e48, 12,    550,       82,    83,    0
-"CANDIED ATOMS",          85e54, 12,    600,       82,    83,    0
-"GEM POLISH",             21e15, 13,    1,         84,    63,    0
-"9TH COLOR",             105e15, 13,    5,         84,    63,    0
-"CHOCOLATE LIGHT",      1.05e18, 13,    25,        84,    63,    0
-"GRAINBOW",              105e18, 13,    50,        84,    63,    0
-"PURE COSMIC LIGHT",    10.5e21, 13,    100,       84,    63,    0
-"GLOW-IN-THE-DARK",     1.05e24, 13,    150,       84,    63,    0
-"LUX SANCTORUMM",       1.05e27, 13,    200,       84,    63,    0
-"REVERSE SHADOWS",      1.05e30, 13,    250,       84,    63,    0
-"CRYSTAL MIRRORS",      1.05e33, 13,    300,       84,    63,    0
-"REVERSE LIGHT THEORY", 1.05e36, 13,    350,       84,    63,    0
-"LIGHT CPTURE MEASURE", 10.5e39, 13,    400,       84,    63,    0
-"LIGHT SPEED LIMIT",     105e42, 13,    450,       84,    63,    0
-"OCCAM'S LASER",        10.5e45, 13,    500,       84,    63,    0
-"HYPERBLACK PAINT",     10.5e51, 13,    550,       84,    63,    0
-"LAB GOGGLES",           105e54, 13,    600,       84,    63,    0
-"YOUR LUCKY COOKIE",     260e15, 14,    1,         85,    63,    0
-"MAGIC COIN",            1.3e18, 14,    5,         85,    63,    0
-"WINNNING LOTTRY TCKT",   13e18, 14,    25,        85,    63,    0
-"4-LEAF CLOVER FIELD",   1.3e21, 14,    50,        85,    63,    0
-"BOOK RECIPE BOOK",      130e21, 14,    100,       85,    63,    0
-"LEPRECHAUN VILLAGE",     13e24, 14,    150,       85,    63,    0
-"IMPROBABILITY DRIVE",    13e27, 14,    200,       85,    63,    0
-"ANTISUPERSTISTRONICS",   13e30, 14,    250,       85,    63,    0
-"BUNNYPEDES",             13e33, 14,    300,       85,    63,    0
-"REVISED PROBABLISTCS",   13e36, 14,    350,       85,    63,    0
-"0-SIDED DICE",          130e39, 14,    400,       85,    63,    0
-"TOUCH OF DETERMINISM",  1.3e45, 14,    450,       85,    63,    0
-"ON A STREAK",            13e48, 14,    500,       85,    63,    0
-"SILVR LINING MAXMZTN",  130e51, 14,    550,       85,    63,    0
-"GAMBLR FLLACY FLLACY",   13e57, 14,    600,       85,    63,    0
-"METABAKERIES",          3.1e18, 15,    1,         86,    87,    0
-"MANDELBROWN SUGAR",    15.5e18, 15,    5,         86,    87,    0
-"FRACTOIDS",             155e18, 15,    25,        86,    87,    0
-"NESTD UNIVRSE THEORY", 15.5e21, 15,    50,        86,    87,    0
-"MENGER SPONGE CAKE",   1.55e24, 15,    100,       86,    87,    0
-"ONE GOOD-HUMORED COW",  155e24, 15,    150,       86,    87,    0
-"CHOCOLATE OUROBOROS",   155e27, 15,    200,       86,    87,    0
-"NESTED",                155e30, 15,    250,       86,    87,    0
-"SPACE-FILLING FIBERS",  155e33, 15,    300,       86,    87,    0
-"ENDLSS BOOK OF PROSE",  155e36, 15,    350,       86,    87,    0
-"THE SET OF ALL SETS",  1.55e42, 15,    400,       86,    87,    0
-"THIS UPGRADE",         15.5e45, 15,    450,       86,    87,    0
-"A BOX",                 155e48, 15,    500,       86,    87,    0
-"MULTISCALE PROFILING", 1.55e54, 15,    550,       86,    87,    0
-"MORE THEY STAY SAME",  15.5e57, 15,    600,       86,    87,    0
-"JS CONSOLE 4 DUMMIES",  710e18, 16,    1,         88,    87,    0
-"64 BIT ARRAYS",        3.55e21, 16,    5,         88,    87,    0
-"STACK OVERFLOW",       35.5e21, 16,    25,        88,    87,    0
-"ENTERPRISE COMPILER",  3.55e24, 16,    50,        88,    87,    0
-"SYNTACTIC SUGAR",       355e24, 16,    100,       88,    87,    0
-"A NICE CUP OF COFFEE", 35.5e27, 16,    150,       88,    87,    0
-"JUST-IN-TIME BAKING",  35.5e30, 16,    200,       88,    87,    0
-"cookies++",            35.5e33, 16,    250,       88,    87,    0
-"SOFTWARE UPDATES",     35.5e36, 16,    300,       88,    87,    0
-"Game.Loop",            35.5e39, 16,    350,       88,    87,    0
-"eval()",                355e42, 16,    400,       88,    87,    0
-"YOUR BIGGEST FANS",    3.55e48, 16,    450,       88,    87,    0
-"HACKER SHADES",        35.5e51, 16,    500,       88,    87,    0
-"PHP CONTAINMENT VATS",  355e54, 16,    550,       88,    87,    0
-"SIMULATION FAILSAFES", 35.5e60, 16,    600,       88,    87,    0
-"MANIFEST DESTINY",      120e21, 17,    1,         89,    63,    0
-"MULTVRS IN A NUTSHLL",  600e21, 17,    5,         89,    63,    0
-"ALL-CONVERSION",          6e24, 17,    25,        89,    63,    0
-"MULTIVERSE AGENTS",     600e24, 17,    50,        89,    63,    0
-"ESCAPE PLAN",            60e27, 17,    100,       89,    63,    0
-"GAME DESIGN",            60e30, 17,    150,       89,    63,    0
-"SANDBOX UNIVERSES",      60e33, 17,    200,       89,    63,    0
-"MULTIVERSE WARS",        60e36, 17,    250,       89,    63,    0
-"MOBILE PORTS",           60e39, 17,    300,       89,    63,    0
-"ENCAPSLATD REALITIES",   60e42, 17,    350,       89,    63,    0
-"EXTRINSIC CLICKING",     60e45, 17,    400,       89,    63,    0
-"UNIVERSAL IDLING",      600e48, 17,    450,       89,    63,    0
-"BREAKNG THE 5TH WALL",   60e51, 17,    500,       89,    63,    0
-"OPPOSITE UNIVERSE",      60e57, 17,    550,       89,    63,    0
-"OTHER ROUTES TO ROME",  600e60, 17,    600,       89,    63,    0
-"NEURAL SHACKLES",        19e24, 18,    1,         90,    63,    0
-"OBEY",                   95e24, 18,    5,         90,    63,    0
-"SPRNKLE OF IRRATNLTY",  950e24, 18,    25,        90,    63,    0
-"FRONT/BACK HEMISPHRE",   95e27, 18,    50,        90,    63,    0
-"NEURAL NETWORKING",     9.5e30, 18,    100,       90,    63,    0
-"COSMIC BRAINSTORMS",    950e30, 18,    150,       90,    63,    0
-"MEGATHERAPY",           950e33, 18,    200,       90,    63,    0
-"SYNAPTIC LUBRICANT",    950e36, 18,    250,       90,    63,    0
-"PSYCHOKINESIS",         950e39, 18,    300,       90,    63,    0
-"SPINES",                950e42, 18,    350,       90,    63,    0
-"NEURAFORMING",          9.5e48, 18,    400,       90,    63,    0
-"EPISTMOLOGCL TRICKRY",   95e51, 18,    450,       90,    63,    0
-"EVERY POSSIBLE IDEA",   950e54, 18,    500,       90,    63,    0
-"THE LAND OF DREAMS",    9.5e60, 18,    550,       90,    63,    0
-"IP THEFT",               95e63, 18,    600,       90,    63,    0
-"CLONING VATS",          5.4e27, 19,    1,         91,    63,    0
-"ENERGIZED NUTRIENTS",    27e27, 19,    5,         91,    63,    0
-"STUNT DOUBLES",         270e27, 19,    25,        91,    63,    0
-"CLONE RCYCLING PLANT",   27e30, 19,    50,        91,    63,    0
-"FREE-RANGE CLONES",     2.7e33, 19,    100,       91,    63,    0
-"GENETIC TAILORING",     270e33, 19,    150,       91,    63,    0
-"POWER IN DIVERSITY",    270e36, 19,    200,       91,    63,    0
-"SELF-BETTERMENT",       270e39, 19,    250,       91,    63,    0
-"SOURCE CONTROL",        270e42, 19,    300,       91,    63,    0
-"UNITED WORKFORCE",      270e45, 19,    350,       91,    63,    0
-"SAFETY PATROLS",        2.7e51, 19,    400,       91,    63,    0
-"CLONE RIGHTS",           27e54, 19,    450,       91,    63,    0
-"ONE BIG FAMILY",        270e57, 19,    500,       91,    63,    0
-"FINETUNED BODY PARTS",  2.7e63, 19,    550,       91,    63,    0
-"BEDTIME STORIES",        27e66, 19,    600,       91,    63,    0
+name,                    price,  build, build-req, desc
+"REINFORCD INDX FINGR",  100,    0,     1,         "62,63"
+"CARPAL TNNEL PRVENTN",  500,    0,     1,         "62,63"
+"AMBIDEXTROUS",           10e3,  0,     10,        "62,63"
+"THOUSAND FINGERS",      100e3,  0,     25,        "64,65,66"
+"MILLION FINGERS",        10e6,  0,     50,        "67,68"
+"BILLION FINGERS",       100e6,  0,     100,       "67,69"
+"TRILLION FINGERS",        1e9,  0,     150,       "67,70"
+"QUADRILLION FINGERS",    10e9,  0,     200,       "67,70"
+"QUINTILLION FINGERS",    10e12, 0,     250,       "67,70"
+"SEXTILLION FINGERS",     10e15, 0,     300,       "67,70"
+"SEPTILLION FINGERS",     10e18, 0,     350,       "67,70"
+"OCTILLION FINGERS",      10e21, 0,     400,       "67,70"
+"NONILLION FINGERS",      10e24, 0,     450,       "67,70"
+"DECILLION FINGERS",      10e27, 0,     500,       "67,70"
+"UNDECILLION FINGERS",    10e30, 0,     550,       "67,70"
+"FWDS FROM GRANDMA",       1e3,  1,     1,         "71,63"
+"STEEL ROLLING PINS",      5e3,  1,     5,         "71,63"
+"LUBRICATED DENTURES",    50e3,  1,     25,        "71,63"
+"PRUNE JUICE",             5e6,  1,     50,        "71,63"
+"DOUBLE-THICK GLASSES",  500e6,  1,     100,       "71,63"
+"AGING AGENTS",           50e9,  1,     150,       "71,63"
+"XTREME WALKERS",         50e12, 1,     200,       "71,63"
+"THE UNBRIDLING",         50e15, 1,     250,       "71,63"
+"REVERSE DEMENTIA",       50e18, 1,     300,       "71,63"
+"TIMEPROOF HAIR DYES",    50e21, 1,     350,       "71,63"
+"GOOD MANNERS",          500e24, 1,     400,       "71,63"
+"GENRATION DEGENRATON",    5e30, 1,     450,       "71,63"
+"VISITS",                 50e33, 1,     500,       "71,63"
+"KITCHEN CABINETS",      500e36, 1,     550,       "71,63"
+"FOAM-TIPPED CANES",       5e42, 1,     600,       "71,63"
+"CHEAP HOES",             11e3,  2,     1,         "72,63"
+"FERTILIZER",             55e3,  2,     5,         "72,63"
+"COOKIE TREES",          550e3,  2,     25,        "72,63"
+"GMO COOKIES",            55e6,  2,     50,        "72,63"
+"GINGRBRED SCARECROWS",  5.5e9,  2,     100,       "72,63"
+"PULSAR SPRINKLERS",     550e9,  2,     150,       "72,63"
+"FUDGE FUNGUS",          550e12, 2,     200,       "72,63"
+"WHEAT TRIFFIDS",        550e15, 2,     250,       "72,63"
+"HUMANE PESTICIDES",     550e18, 2,     300,       "72,63"
+"BARNSTARS",             550e21, 2,     350,       "72,63"
+"LINDWORMS",             5.5e27, 2,     400,       "72,63"
+"GLOBAL SEED VAULT",      55e30, 2,     450,       "72,63"
+"REVERSE-VEGANISM",      550e33, 2,     500,       "72,63"
+"COOKIE MULCH",          5.5e39, 2,     550,       "72,63"
+"SELF-DRIVING TRACTRS",   55e42, 2,     600,       "72,63"
+"SUGAR GAS",             120e3,  3,     1,         "73,63"
+"MEGADRILL",             600e3,  3,     5,         "73,63"
+"ULTRADRILL",              6e6,  3,     25,        "73,63"
+"ULTIMADRILL",           600e6,  3,     50,        "73,63"
+"H-BOMB MINING",          60e9,  3,     100,       "73,63"
+"COREFORGE",               6e12, 3,     150,       "73,63"
+"PLANETSPLITTERS",         6e15, 3,     200,       "73,63"
+"CANOLA OIL WELLS",        6e18, 3,     250,       "73,63"
+"MOLE PEOPLE",             6e21, 3,     300,       "73,63"
+"MINE CANARIES",           6e24, 3,     350,       "73,63"
+"BORE AGAIN",             60e27, 3,     400,       "73,63"
+"AIR MINING",            600e30, 3,     450,       "73,63"
+"CARAMEL ALLOYS",          6e33, 3,     500,       "73,63"
+"DELICIOUS MINERALOGY",   60e39, 3,     550,       "73,63"
+"MINESHAFT SUPPORTS",    600e42, 3,     600,       "73,63"
+"STRDIER CONVYOR BLTS",  1.3e6,  4,     1,         "74,63"
+"CHILD LABOR",           6.5e6,  4,     5,         "74,63"
+"SWEATSHOP",              65e6,  4,     25,        "74,63"
+"RADIUM REACTORS",       6.5e9,  4,     50,        "74,63"
+"RECOMBOBULATORS",       650e9,  4,     100,       "74,63"
+"DEEP-BAKE PROCESS",      65e12, 4,     150,       "74,63"
+"CYBORG WORKFORCE",       65e15, 4,     200,       "74,63"
+"78-HOUR DAYS",           65e18, 4,     250,       "74,63"
+"MACHINE LEARNING",       65e21, 4,     300,       "74,63"
+"BROWNIE POINT SYSTEM",   65e24, 4,     350,       "74,63"
+""VOLUNTEER" INTERNS",   650e27, 4,     400,       "74,63"
+"BEHAVIORAL REFRAMING",  6.5e33, 4,     450,       "74,63"
+"THE INFINITY ENGINE",    65e36, 4,     500,       "74,63"
+"N-DIM ASSMBLY LINES",   650e39, 4,     550,       "74,63"
+"UNIVERSAL AUTOMATION",  6.5e45, 4,     600,       "74,63"
+"TALLER TELLERS",         14e6,  5,     1,         "75,63"
+"SCSSR-RESISTNT CARDS",   70e6,  5,     5,         "75,63"
+"ACID-PROOF VAULTS",     700e6,  5,     25,        "75,63"
+"CHOCOLATE COINS",        70e9,  5,     50,        "75,63"
+"EXPNTL INTREST RATES",    7e12, 5,     100,       "75,63"
+"FINANCIAL ZEN",         700e12, 5,     150,       "75,63"
+"WAY OF THE WALLET",     700e15, 5,     200,       "75,63"
+"THE STUFF RATIONALE",   700e18, 5,     250,       "75,63"
+"EDIBLE MONEY",          700e21, 5,     300,       "75,63"
+"GRAND SUPERCYCLE",      700e24, 5,     350,       "75,63"
+"RULES OF ACQUISITION",    7e30, 5,     400,       "75,63"
+"ALTRUISTIC LOOP",        70e33, 5,     450,       "75,63"
+"DIMNSHING TAX RETRNS",  700e36, 5,     500,       "75,63"
+"COOKIE POINTS",           7e42, 5,     550,       "75,63"
+"THE BIG SHORTCAKE",      70e45, 5,     600,       "75,63"
+"GOLDEN IDOLS",          200e6,  6,     1,         "76,63"
+"SACRIFICES",              1e9,  6,     5,         "76,63"
+"DELICIOUS BLESSING",     10e9,  6,     25,        "76,63"
+"SUN FESTIVAL",            1e12, 6,     50,        "76,63"
+"ENLARGED PANTHEON",     100e12, 6,     100,       "76,63"
+"GREAT BAKER IN SKY",     10e15, 6,     150,       "76,63"
+"CREATION MYTH",          10e18, 6,     200,       "76,63"
+"THEOCRACY",              10e21, 6,     250,       "76,63"
+"SICK RAP PRAYERS",       10e24, 6,     300,       "76,63"
+"PSALM-READING",          10e27, 6,     350,       "76,63"
+"WAR OF THE GODS",       100e30, 6,     400,       "76,63"
+"A NOVEL IDEA",            1e36, 6,     450,       "76,63"
+"APPARITIONS",            10e39, 6,     500,       "76,63"
+"NEGATHEISM",            100e42, 6,     550,       "76,63"
+"TEMPLE TRAPS",            1e48, 6,     600,       "76,63"
+"POINTIER HATS",         3.3e9,  7,     1,         "77,63"
+"BEARDLIER BEARDS",     16.5e9,  7,     5,         "77,63"
+"ANCIENT GRIMOIRES",     165e9,  7,     25,        "77,63"
+"KITCHEN CURSES",       16.5e12, 7,     50,        "77,63"
+"SCHOOL OF SORCERY",     165e15, 7,     100,       "77,63"
+"DARK FORMULAS",         165e15, 7,     150,       "77,63"
+"COOKIEMANCY",           165e18, 7,     200,       "77,63"
+"RABBIT TRICK",          165e18, 7,     250,       "77,63"
+"DELUXE TAILORD WANDS",  165e21, 7,     300,       "77,63"
+"IMMOBLE SPELLCASTING",  165e27, 7,     350,       "77,63"
+"ELECTRICITY",          1.65e33, 7,     400,       "77,63"
+"SPELLING BEES",        16.5e36, 7,     450,       "77,63"
+"WIZARD BASEMENTS",      165e39, 7,     500,       "77,63"
+"MAGICAL REALISM",      1.65e45, 7,     550,       "77,63"
+"POLYMORPHISM",         16.5e48, 7,     600,       "77,63"
+"VANILLA NEBULAE",        51e9,  8,     1,         "78,63"
+"WORMHOLES",             255e9,  8,     5,         "78,63"
+"FREQUENT FLYER",       2.55e12, 8,     25,        "78,63"
+"WARP DRIVE",            255e12, 8,     50,        "78,63"
+"CHOCOLATE MONOLITHS",  25.5e15, 8,     100,       "78,63"
+"GENERATION SHIP",      2.55e18, 8,     150,       "78,63"
+"DYSON SPHERE",         2.55e21, 8,     200,       "78,63"
+"THE FINAL FRONTIER",   2.55e24, 8,     250,       "78,63"
+"AUTOPILOT",            2.55e27, 8,     300,       "78,63"
+"RSTRUNTS AT UNIVRSE",  2.55e30, 8,     350,       "78,63"
+"UNIVERSAL ALPHABET",   25.5e33, 8,     400,       "78,63"
+"TOROID UNIVERSE",       255e36, 8,     450,       "78,63"
+"PRIME DIRECTIVE",      2.55e39, 8,     500,       "78,63"
+"COSIC FG RADIATION",   25.5e45, 8,     550,       "78,63"
+"30 MINS OR $ BACK",     255e48, 8,     600,       "78,63"
+"ANTIMONY",              750e9,  9,     1,         "79,63"
+"ESSENCE OF DOUGH",     3.75e12, 9,     5,         "79,63"
+"TRUE CHOCOLATE",       37.5e12, 9,     25,        "79,63"
+"AMBROSIA",             3.75e15, 9,     50,        "79,63"
+"AQUA CRUSTULAE",        375e15, 9,     100,       "79,63"
+"ORIGIN CRUCIBLE",      37.5e18, 9,     150,       "79,63"
+"ATMIC FLUIDTY THEORY", 37.5e21, 9,     200,       "79,63"
+"BEIGE GOO",            37.5e24, 9,     250,       "79,63"
+"ADVENT OF CHEMISTRY",  37.5e27, 9,     300,       "79,63"
+"ON SECOND THOUGHT",    37.5e30, 9,     350,       "79,63"
+"PUBLIC BETTERMENT",     375e33, 9,     400,       "79,63"
+"HERMETC RECNCLIATION", 3.75e39, 9,     450,       "79,63"
+"CHROMATIC CYCLING",    37.5e42, 9,     500,       "79,63"
+"ARCANIZED GLASSWARE",   375e45, 9,     550,       "79,63"
+"DOSE MAKES THE POISN", 37.5e51, 9,     600,       "79,63"
+"ANCIENT TABLET",         10e12, 10,    1,         "80,63"
+"INSANE OATLING WRKRS",   50e12, 10,    5,         "80,63"
+"SOUL BOND",             500e12, 10,    25,        "80,63"
+"SANITY DANCE",           50e15, 10,    50,        "80,63"
+"BRANE TRANSPLANT",        5e18, 10,    100,       "80,63"
+"DEITY-SIZED PORTALS",   500e18, 10,    150,       "80,63"
+"END TIMES BCKUP PLAN",  500e21, 10,    200,       "80,63"
+"MADDENING CHANTS",      500e24, 10,    250,       "80,63"
+"THE REAL WORLD",        500e27, 10,    300,       "80,63"
+"DMNSNL GARBAGE GULPR",  500e30, 10,    350,       "80,63"
+"EMBEDDED MICROPORTLS",    5e36, 10,    400,       "80,63"
+"HIS ADVENT",             50e39, 10,    450,       "80,63"
+"DOMESTIC RIFTS",        500e42, 10,    500,       "80,63"
+"PORTAL GUNS",             5e48, 10,    550,       "80,63"
+"A WAY HOME",             50e51, 10,    600,       "80,63"
+"FLUX CAPACITORS",       140e12, 11,    1,         "81,63"
+"TIME PARADOX RESOLVR",  700e12, 11,    5,         "81,63"
+"QUANTUM CONUNDRUM",       7e15, 11,    25,        "81,63"
+"CAUSALITY ENFORCER",    700e15, 11,    50,        "81,63"
+"YESTRMORRW COMPRATRS",   70e18, 11,    100,       "81,63"
+"FAR FUTURE ENACTMENT",    7e21, 11,    150,       "81,63"
+"GREAT LOOP HYPOTHSIS",    7e24, 11,    200,       "81,63"
+"MOMENTS OF MAYBE",        7e27, 11,    250,       "81,63"
+"SECOND SECONDS",          7e30, 11,    300,       "81,63"
+"MORE CLOCK HANDS",        7e33, 11,    350,       "81,63"
+"NOSTALGIA",              70e36, 11,    400,       "81,63"
+"SPLIT SECONDS",         700e39, 11,    450,       "81,63"
+"PATIENCE ABOLISHED",     70e42, 11,    500,       "81,63"
+"TIMEPROOF UPHOLSTERY",   70e48, 11,    550,       "81,63"
+"RECTIFYING A MISTAKE",  700e51, 11,    600,       "81,63"
+"SUGAR BOSONS",          1.7e15, 12,    1,         "82,83"
+"STRING THEORY",         8.5e15, 12,    5,         "82,83"
+"LARGE MACARON COLLIDER", 85e15, 12,    25,        "82,83"
+"BIG BANG BAKE",         8.5e18, 12,    50,        "82,83"
+"REVERSE CYCLOTRONS",    850e18, 12,    100,       "82,83"
+"NANOCOSMICS",            85e21, 12,    150,       "82,83"
+"THE PULSE",              85e24, 12,    200,       "82,83"
+"SOME TINY PARTICLE",     85e27, 12,    250,       "82,83"
+"QUANTUM COMB",           85e30, 12,    300,       "82,83"
+"BAKING NOBEL PRIZE",     85e33, 12,    350,       "82,83"
+"THE DEFNITE MOLECULE",  850e36, 12,    400,       "82,83"
+"FLAVOR ITSELF",         8.5e42, 12,    450,       "82,83"
+"DELICIOUS PULL",         85e45, 12,    500,       "82,83"
+"EMPLOYEE MINIFCATION",  850e48, 12,    550,       "82,83"
+"CANDIED ATOMS",          85e54, 12,    600,       "82,83"
+"GEM POLISH",             21e15, 13,    1,         "84,63"
+"9TH COLOR",             105e15, 13,    5,         "84,63"
+"CHOCOLATE LIGHT",      1.05e18, 13,    25,        "84,63"
+"GRAINBOW",              105e18, 13,    50,        "84,63"
+"PURE COSMIC LIGHT",    10.5e21, 13,    100,       "84,63"
+"GLOW-IN-THE-DARK",     1.05e24, 13,    150,       "84,63"
+"LUX SANCTORUMM",       1.05e27, 13,    200,       "84,63"
+"REVERSE SHADOWS",      1.05e30, 13,    250,       "84,63"
+"CRYSTAL MIRRORS",      1.05e33, 13,    300,       "84,63"
+"REVERSE LIGHT THEORY", 1.05e36, 13,    350,       "84,63"
+"LIGHT CPTURE MEASURE", 10.5e39, 13,    400,       "84,63"
+"LIGHT SPEED LIMIT",     105e42, 13,    450,       "84,63"
+"OCCAM'S LASER",        10.5e45, 13,    500,       "84,63"
+"HYPERBLACK PAINT",     10.5e51, 13,    550,       "84,63"
+"LAB GOGGLES",           105e54, 13,    600,       "84,63"
+"YOUR LUCKY COOKIE",     260e15, 14,    1,         "85,63"
+"MAGIC COIN",            1.3e18, 14,    5,         "85,63"
+"WINNNING LOTTRY TCKT",   13e18, 14,    25,        "85,63"
+"4-LEAF CLOVER FIELD",   1.3e21, 14,    50,        "85,63"
+"BOOK RECIPE BOOK",      130e21, 14,    100,       "85,63"
+"LEPRECHAUN VILLAGE",     13e24, 14,    150,       "85,63"
+"IMPROBABILITY DRIVE",    13e27, 14,    200,       "85,63"
+"ANTISUPERSTISTRONICS",   13e30, 14,    250,       "85,63"
+"BUNNYPEDES",             13e33, 14,    300,       "85,63"
+"REVISED PROBABLISTCS",   13e36, 14,    350,       "85,63"
+"0-SIDED DICE",          130e39, 14,    400,       "85,63"
+"TOUCH OF DETERMINISM",  1.3e45, 14,    450,       "85,63"
+"ON A STREAK",            13e48, 14,    500,       "85,63"
+"SILVR LINING MAXMZTN",  130e51, 14,    550,       "85,63"
+"GAMBLR FLLACY FLLACY",   13e57, 14,    600,       "85,63"
+"METABAKERIES",          3.1e18, 15,    1,         "86,87"
+"MANDELBROWN SUGAR",    15.5e18, 15,    5,         "86,87"
+"FRACTOIDS",             155e18, 15,    25,        "86,87"
+"NESTD UNIVRSE THEORY", 15.5e21, 15,    50,        "86,87"
+"MENGER SPONGE CAKE",   1.55e24, 15,    100,       "86,87"
+"ONE GOOD-HUMORED COW",  155e24, 15,    150,       "86,87"
+"CHOCOLATE OUROBOROS",   155e27, 15,    200,       "86,87"
+"NESTED",                155e30, 15,    250,       "86,87"
+"SPACE-FILLING FIBERS",  155e33, 15,    300,       "86,87"
+"ENDLSS BOOK OF PROSE",  155e36, 15,    350,       "86,87"
+"THE SET OF ALL SETS",  1.55e42, 15,    400,       "86,87"
+"THIS UPGRADE",         15.5e45, 15,    450,       "86,87"
+"A BOX",                 155e48, 15,    500,       "86,87"
+"MULTISCALE PROFILING", 1.55e54, 15,    550,       "86,87"
+"MORE THEY STAY SAME",  15.5e57, 15,    600,       "86,87"
+"JS CONSOLE 4 DUMMIES",  710e18, 16,    1,         "88,87"
+"64 BIT ARRAYS",        3.55e21, 16,    5,         "88,87"
+"STACK OVERFLOW",       35.5e21, 16,    25,        "88,87"
+"ENTERPRISE COMPILER",  3.55e24, 16,    50,        "88,87"
+"SYNTACTIC SUGAR",       355e24, 16,    100,       "88,87"
+"A NICE CUP OF COFFEE", 35.5e27, 16,    150,       "88,87"
+"JUST-IN-TIME BAKING",  35.5e30, 16,    200,       "88,87"
+"cookies++",            35.5e33, 16,    250,       "88,87"
+"SOFTWARE UPDATES",     35.5e36, 16,    300,       "88,87"
+"Game.Loop",            35.5e39, 16,    350,       "88,87"
+"eval()",                355e42, 16,    400,       "88,87"
+"YOUR BIGGEST FANS",    3.55e48, 16,    450,       "88,87"
+"HACKER SHADES",        35.5e51, 16,    500,       "88,87"
+"PHP CONTAINMENT VATS",  355e54, 16,    550,       "88,87"
+"SIMULATION FAILSAFES", 35.5e60, 16,    600,       "88,87"
+"MANIFEST DESTINY",      120e21, 17,    1,         "89,63"
+"MULTVRS IN A NUTSHLL",  600e21, 17,    5,         "89,63"
+"ALL-CONVERSION",          6e24, 17,    25,        "89,63"
+"MULTIVERSE AGENTS",     600e24, 17,    50,        "89,63"
+"ESCAPE PLAN",            60e27, 17,    100,       "89,63"
+"GAME DESIGN",            60e30, 17,    150,       "89,63"
+"SANDBOX UNIVERSES",      60e33, 17,    200,       "89,63"
+"MULTIVERSE WARS",        60e36, 17,    250,       "89,63"
+"MOBILE PORTS",           60e39, 17,    300,       "89,63"
+"ENCAPSLATD REALITIES",   60e42, 17,    350,       "89,63"
+"EXTRINSIC CLICKING",     60e45, 17,    400,       "89,63"
+"UNIVERSAL IDLING",      600e48, 17,    450,       "89,63"
+"BREAKNG THE 5TH WALL",   60e51, 17,    500,       "89,63"
+"OPPOSITE UNIVERSE",      60e57, 17,    550,       "89,63"
+"OTHER ROUTES TO ROME",  600e60, 17,    600,       "89,63"
+"NEURAL SHACKLES",        19e24, 18,    1,         "90,63"
+"OBEY",                   95e24, 18,    5,         "90,63"
+"SPRNKLE OF IRRATNLTY",  950e24, 18,    25,        "90,63"
+"FRONT/BACK HEMISPHRE",   95e27, 18,    50,        "90,63"
+"NEURAL NETWORKING",     9.5e30, 18,    100,       "90,63"
+"COSMIC BRAINSTORMS",    950e30, 18,    150,       "90,63"
+"MEGATHERAPY",           950e33, 18,    200,       "90,63"
+"SYNAPTIC LUBRICANT",    950e36, 18,    250,       "90,63"
+"PSYCHOKINESIS",         950e39, 18,    300,       "90,63"
+"SPINES",                950e42, 18,    350,       "90,63"
+"NEURAFORMING",          9.5e48, 18,    400,       "90,63"
+"EPISTMOLOGCL TRICKRY",   95e51, 18,    450,       "90,63"
+"EVERY POSSIBLE IDEA",   950e54, 18,    500,       "90,63"
+"THE LAND OF DREAMS",    9.5e60, 18,    550,       "90,63"
+"IP THEFT",               95e63, 18,    600,       "90,63"
+"CLONING VATS",          5.4e27, 19,    1,         "91,63"
+"ENERGIZED NUTRIENTS",    27e27, 19,    5,         "91,63"
+"STUNT DOUBLES",         270e27, 19,    25,        "91,63"
+"CLONE RCYCLING PLANT",   27e30, 19,    50,        "91,63"
+"FREE-RANGE CLONES",     2.7e33, 19,    100,       "91,63"
+"GENETIC TAILORING",     270e33, 19,    150,       "91,63"
+"POWER IN DIVERSITY",    270e36, 19,    200,       "91,63"
+"SELF-BETTERMENT",       270e39, 19,    250,       "91,63"
+"SOURCE CONTROL",        270e42, 19,    300,       "91,63"
+"UNITED WORKFORCE",      270e45, 19,    350,       "91,63"
+"SAFETY PATROLS",        2.7e51, 19,    400,       "91,63"
+"CLONE RIGHTS",           27e54, 19,    450,       "91,63"
+"ONE BIG FAMILY",        270e57, 19,    500,       "91,63"
+"FINETUNED BODY PARTS",  2.7e63, 19,    550,       "91,63"
+"BEDTIME STORIES",        27e66, 19,    600,       "91,63"
+"FARMER GRANDMAS",        55e3,   2,     15,       "92,93,94"
+"MINER GRANDMAS",        600e3,   3,     15,       "92,95,94"
+"WORKER GRANDMAS",       6.5e6,   4,     15,       "92,96,94"
+"BANKER GRANDMAS",        70e6,   5,     15,       "92,97,94"
+"PRIESTESS GRANDMAS",      1e9,   6,     15,       "92,98,94"
+"WITCH GRANDMAS",       16.5e9,   7,     15,       "92,99,94"
+"COSMIC GRANDMAS",       255e9,   8,     15,       "92,100,94"
+"TRANSMUTATED GRNDMAS", 3.75e12,  9,     15,       "92,101,94"
+"ALTERED GRANDMAS",       50e12, 10,     15,       "92,102,94"
+"GRANDMAS' GRANDMAS",    700e12, 11,     15,       "92,103,94"
+"ANTIGRANDMAS",          8.5e15, 12,     15,       "92,104,94"
+"RAINBOW GRANDMAS",      105e15, 13,     15,       "92,105,94"
+"LUCKY GRANDMAS",        1.3e18, 14,     15,       "92,106,94"
+"METAGRANDMAS",         15.5e18, 15,     15,       "92,107,94"
+"BINARY GRANDMAS",      3.55e21, 16,     15,       "92,108,94"
+"ALTERNATE GRANDMAS",    600e21, 17,     15,       "92,109,94"
+"BRAINY GRANDMAS",        95e24, 18,     15,       "92,110,94"
+"CLONE GRANDMAS",         27e27, 19,     15,       "92,111,94"

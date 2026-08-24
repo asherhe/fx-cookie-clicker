@@ -1,21 +1,21 @@
-name,     cps,    price
-"CURSOR", 0.1,     15
-"GRNDMA",   1,    100
-"FARM",     8,    1.1e3
-"MINE",    47,     12e3
-"FACTRY", 260,    130e3
-"BANK",   1.4e3,  1.4e6
-"TEMPLE", 7.8e3,   20e6
-"WIZARD",  44e3,  330e6
-"SHIPMT", 260e3,  5.1e9
-"ALCHMY", 1.6e6,   75e9
-"PORTAL",  10e6,   1e12
-"TIMEMC",  65e6,   14e12
-"ANTMTR", 430e6,  170e12
-"PRISM",  2.9e9,  2.1e15
-"CHANCE",  21e9,   26e15
-"FRACTL", 150e9,  310e15
-"JSCONS", 1.1e12,  71e18
-"IDLVRS", 8.3e12,  12e21
-"CORTEX",  64e12, 1.9e24
-"YOU",    510e12, 540e27
+name,     cps,    price,  desc
+"CURSOR", 0.1,     15,    "1,2"
+"GRNDMA",   1,    100,    "3,4"
+"FARM",     8,    1.1e3,  "5,6"
+"MINE",    47,     12e3,  "7,8"
+"FACTRY", 260,    130e3,  "9,10"
+"BANK",   1.4e3,  1.4e6,  "11,12"
+"TEMPLE", 7.8e3,   20e6,  "13,14"
+"WIZARD",  44e3,  330e6,  "15,16"
+"SHIPMT", 260e3,  5.1e9,  "17,19"
+"ALCHMY", 1.6e6,   75e9,  "19,20"
+"PORTAL",  10e6,   1e12,  "21,22"
+"TIMEMC",  65e6,   14e12, "23,24,25"
+"ANTMTR", 430e6,  170e12, "26,27,28"
+"PRISM",  2.9e9,  2.1e15, "29,30"
+"CHANCE",  21e9,   26e15, "31,32,33"
+"FRACTL", 150e9,  310e15, "34,35"
+"JSCONS", 1.1e12,  71e18, "36,37,38"
+"IDLVRS", 8.3e12,  12e21, "39,40,41,42,43,44,45,46,47"
+"CORTEX",  64e12, 1.9e24, "48,49,50,51,52,53,54,55"
+"YOU",    510e12, 540e27, "56,57,58,59,60,61"

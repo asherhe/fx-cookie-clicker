@@ -1,6 +1,7 @@
 import fxconv
 import csv
 import struct
+import re
 
 def convert(input, output, params, target):
   if params["custom-type"] == "csv":
@@ -53,26 +54,39 @@ def convert_csv(input, output, params, target):
   cols_data: dict[str: fxconv.ObjectData] = {}
   for col in params["col-name"].keys():
     cols_data[col] = fxconv.ObjectData()
+
+    TYPE_PATTERN = r"^(.+?)(\[(\d+)\])?$"
     col_type = params["col-type"][col]
+    
+    type_match = re.search(TYPE_PATTERN, col_type)
+    col_type = type_match.group(1)
+    arr_length = type_match.group(3)
+    if arr_length:
+      arr_length = int(arr_length)
 
     if col_type in STRUCT_FORMATS:
+      if not arr_length:
+        arr_length = 1 # converted data is exactly the same
+
       fmt, conv = STRUCT_FORMATS[col_type]
-      cols_data[col] += struct.pack(f">{n}{fmt}", *map(conv, cols_raw[col]))
+      for row in cols_raw[col]:
+        if arr_length == 1:
+          row = [row]
+        else:
+          if row == "":
+            row = []
+          else:
+            row = row.split(",")
+          row += [0]*(arr_length-len(row))
+          row = row[:arr_length]
+        cols_data[col] += struct.pack(f">{arr_length}{fmt}", *map(conv, row))
     
-    elif col_type[:5] == "char[":
-      max_len = col_type[5:-1]
-      try:
-        max_len = int(max_len)
-        if max_len <= 0:
-          raise ValueError
-      except ValueError:
-        raise fxconv.FxconvError(f"expected positive integer in csv col-type char[], got {col_type[5:-1]}")
-      
+    elif col_type == "char" and arr_length:
       for string in cols_raw[col]:
-        cols_data[col] += str_to_bytes(string, max_len)
+        cols_data[col] += str_to_bytes(string, arr_length)
     
     else:
-      raise fxconv.FxconvError(f"unknown csv col-type {col_type}")
+      raise fxconv.FxconvError(f"column {col}: unknown csv col-type {col_type}")
 
   cols_data = [ ("_" + params["col-name"][col], bdata) for col, bdata in cols_data.items() ]
 

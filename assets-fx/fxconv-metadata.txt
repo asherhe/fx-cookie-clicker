@@ -23,6 +23,9 @@ building_data.csv:
   col-name.price: BUILD_PRICES
   col-type.price: double
 
+  col-name.desc: BUILD_DESC
+  col-type.desc: uint16[9]
+
 upg_data.csv:
   custom-type: csv
   name: 
@@ -39,12 +42,8 @@ upg_data.csv:
   col-name.build-req: UPG_BUILD_REQ
   col-type.build-req: uint16
 
-  col-name.desc1: UPG_DESC1
-  col-type.desc1: uint16
-  col-name.desc2: UPG_DESC2
-  col-type.desc2: uint16
-  col-name.desc3: UPG_DESC3
-  col-type.desc3: uint16
+  col-name.desc: UPG_DESC
+  col-type.desc: uint16[3]
 
 descs.txt:
   custom-type: strs

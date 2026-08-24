@@ -42,24 +42,24 @@ extern char BUILD_NAMES[NUM_BUILDS][7];
 extern double BUILD_CPS[NUM_BUILDS];
 /* price of building the first one of every building */
 extern double BUILD_PRICES[NUM_BUILDS];
+/* three lines of description for the upgrade's info box, points to indices in DESC */
+extern uint16_t BUILD_DESC[NUM_BUILDS][9];
 
 class Game;
 
 struct Building
 {
   BuildType type;
-  const char *name;                     // building display name, max 6 chars
   double cps, base_cps, cps_multiplier; // cookies per second
   double price, base_price;             // cost to buy this building
   uint16_t qty;                         // amount of this building we own
   double thousand_fingers;              // for B_CURSOR only: bonus cookies from the Thousand Fingers upgrade
   Game *game;                           // game instance this building exists in
 
-  Building() : name(nullptr), base_cps(0.0), cps_multiplier(1.0), base_price(0.0), qty(0) {}
+  Building() : base_cps(0.0), cps_multiplier(1.0), base_price(0.0), qty(0) {}
 
   Building(BuildType type, Game *game)
       : type(type),
-        name(BUILD_NAMES[type]),
         base_cps(BUILD_CPS[type]),
         cps_multiplier(1.0),
         base_price(BUILD_PRICES[type]),
